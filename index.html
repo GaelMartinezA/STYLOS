@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLO</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            
+            /* CICLORAMA DE ESTUDIO 3D CON TONOS ATMOSFÉRICOS RECONFIGURABLES */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow);
+            color: white;
+            
+            /* Transición fluida para que los colores del ciclorama cambien con suavidad */
+            transition: --studio-light 0.8s ease, --studio-shadow 0.8s ease, background 0.8s ease;
+        }
+
+        /* Registro de variables dinámicas CSS para animar el degradado radial en navegadores modernos */
+        @property --studio-light {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: #3a3d42;
+        }
+        @property --studio-shadow {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: #1c1d1f;
+        }
+
+        /* ----- CONTENEDOR DE PERSPECTIVA 3D ----- */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            height: 460px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px; /* Mantiene el punto de fuga central del mockup */
+            margin-bottom: 10px;
+        }
+
+        .carousel {
+            position: relative;
+            width: 450px;
+            height: 350px;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .folder-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: transparent; 
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease;
+            backface-visibility: hidden;
+            user-select: none;
+        }
+
+        /* --- FEEDBACK VISUAL PARA ESTILOS NO DISPONIBLES --- */
+        .folder-card[data-url="coming-soon"].active {
+            cursor: not-allowed;
+        }
+
+        .folder-img-wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .folder-img-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            
+            /* EFECTO DE REFLEJO EN EL PISO VIRTUAL */
+            -webkit-box-reflect: below 4px linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(0,0,0,0.35) 100%);
+            
+            /* Sombra suave para separar el objeto del fondo */
+            filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.6));
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .folder-card.active .folder-img-wrap img {
+            filter: drop-shadow(0px 30px 45px rgba(0, 0, 0, 0.75));
+        }
+
+        /* ----- INTERFAZ GRÁFICA (UI) ----- */
+        .ui-container {
+            text-align: center;
+            z-index: 20;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .ui-container h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            text-shadow: 0px 4px 12px rgba(0,0,0,0.6);
+        }
+
+        .ui-container p {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            color: #a0a5af;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* --- CONTENEDOR DE BOTONES DE NAVEGACIÓN EN LÍNEA --- */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn-nav {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: white;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            font-family: 'Segoe UI', sans-serif;
+            border-radius: 50%; 
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-nav:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-nav:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carousel-container">
+        <div class="carousel" id="folderCarousel">
+            
+            <div class="folder-card" data-index="0" data-light="#4a3042" data-shadow="#1c141a" data-url="y2k.html">
+                <div class="folder-img-wrap">
+                    <img src="/Index/Y2k.svg" alt="Y2K Aesthetic">
+                </div>
+            </div>
+
+            <div class="folder-card" data-index="1" data-light="#3a3d42" data-shadow="#16171a" data-url="../Grunge/Grunge.html">
+                <div class="folder-img-wrap">
+                    <img src="/Index/Grunge.svg" alt="Grunge Aesthetic">
+                </div>
+            </div>
+
+            <div class="folder-card" data-index="2" data-light="#343d2f" data-shadow="#161a14" data-url="../Cottagecore/Cottagecore.html">
+                <div class="folder-img-wrap">
+                    <img src="/Index/Cottagecore.svg" alt="Cottagecore Aesthetic">
+                </div>
+            </div>
+
+            <!-- MODIFICADO: URL configurada como coming-soon -->
+            <div class="folder-card" data-index="3" data-light="#343d4a" data-shadow="#16191f" data-url="coming-soon">
+                <div class="folder-img-wrap">
+                    <img src="/Index/Glamrock.svg" alt="Glamrock Aesthetic">
+                </div>
+            </div>
+
+            <div class="folder-card" data-index="4" data-light="#362240" data-shadow="#140d17" data-url="gotico.html">
+                <div class="folder-img-wrap">
+                    <img src="/Index/Gotico.svg" alt="Gótico Aesthetic">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui-container">
+        <h1>SELECCIÓN DE ESTILO</h1>
+        <p>Elige tu estilo para empezar</p>
+        
+        <div class="nav-controls">
+            <button class="btn-nav" id="btnAtras">&larr;</button>
+            <button class="btn-nav" id="btnSiguiente">&rarr;</button>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.getElementById('folderCarousel');
+        const cards = Array.from(document.querySelectorAll('.folder-card'));
+        let currentIndex = 2; 
+        const totalCards = cards.length;
+
+        function updateCarousel() {
+            cards.forEach((card, i) => {
+                let offset = i - currentIndex;
+                
+                if (offset < -Math.floor(totalCards / 2)) offset += totalCards;
+                if (offset > Math.floor(totalCards / 2)) offset -= totalCards;
+
+                const absOffset = Math.abs(offset);
+                const sign = Math.sign(offset); 
+                
+                let rotateY = 0;
+                let translateX = 0;
+                let translateZ = 0;
+                let scale = 1;
+
+                if (offset === 0) {
+                    rotateY = 0;
+                    translateX = 0;
+                    translateZ = 160; 
+                    scale = 1.12;
+                    
+                    const lightColor = card.getAttribute('data-light');
+                    const shadowColor = card.getAttribute('data-shadow');
+                    
+                    document.body.style.setProperty('--studio-light', lightColor);
+                    document.body.style.setProperty('--studio-shadow', shadowColor);
+                    
+                    document.body.style.backgroundImage = `radial-gradient(circle at 50% 85%, ${lightColor} 0%, ${shadowColor} 100%)`;
+                } else {
+                    rotateY = sign * -35; 
+                    translateX = sign * (190 + (absOffset * 75)); 
+                    translateZ = -140 - (absOffset * 90);
+                    scale = 0.85; 
+                }
+
+                const opacity = absOffset > 2 ? 0 : 1; 
+
+                card.style.transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+                card.style.opacity = opacity;
+                card.style.zIndex = totalCards - absOffset;
+
+                if (offset === 0) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+
+        function goToIndex(index) {
+            currentIndex = (index + totalCards) % totalCards;
+            updateCarousel();
+        }
+
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                if (card.classList.contains('active')) {
+                    const destino = card.getAttribute('data-url');
+                    
+                    // MODIFICADO: Control para bloquear la redirección de Glamrock
+                    if (destino === "coming-soon") {
+                        alert("¡Estilo Glamrock disponible próximamente!");
+                    } else if (destino) {
+                        window.location.href = destino;
+                    }
+                } else {
+                    goToIndex(index);
+                }
+            });
+        });
+
+        document.getElementById('btnSiguiente').addEventListener('click', () => {
+            goToIndex(currentIndex + 1);
+        });
+
+        document.getElementById('btnAtras').addEventListener('click', () => {
+            goToIndex(currentIndex - 1);
+        });
+
+        updateCarousel();
+    </script>
+</body>
+</html>
