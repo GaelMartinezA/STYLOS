@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo_Cottagecore.exe - Moodboard</title>
+    <style>
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX --- */
+        :root {
+            --win-bg: rgba(174, 122, 167, 0.95); /* Menos translúcido para dar solidez en pantalla completa */
+            --win-edge-light: rgba(255, 255, 255, 0.4);  
+            --win-edge-shadow: rgba(155, 107, 155, 0.5); 
+            --win-edge-dark: #161a14;   
+            --win-text: #000000; 
+            --win-blue-start: #2f3a3d;  /* Tonos oliva profundo del ciclorama */
+            --win-blue-end: #4791a0; 
+            --win-input-bg: rgba(55, 70, 83, 0.55); /* Capa interna traslúcida */
+                }
+
+        * {
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            /* Se modernizan las fuentes globales usando el stack limpio del UI del Index[cite: 17] */
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+            font-size: 11pt; 
+        }
+
+        body {
+            /* SE ADOPTA EL DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX[cite: 17] */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow); 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA ULTRA-TRANSLÚCIDA --- */
+        .window {
+            background-color: var(--win-bg); 
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); 
+            display: flex; 
+            flex-direction: column; 
+            
+            /* Glassmorphism avanzado para fundirse con el ciclorama 3D posterior[cite: 17] */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BARRA DE TÍTULO MODERNIZADA --- */
+        .title-bar {
+            height: 36px; 
+            background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 16px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            user-select: none; 
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15); 
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 6px; 
+        }
+
+        .win-btn {
+            width: 24px; 
+            height: 22px; 
+            background-color: rgba(255, 255, 255, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 9pt; 
+            cursor: pointer; 
+            color: #ffffff; 
+            transition: background-color 0.2s, transform 0.1s; 
+        }
+
+        .win-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+        }
+
+        /* --- BARRA DE MENÚS (ESTILO BOTONES SUTILES DEL INDEX) --- */
+        .menu-bar {
+            display: flex; 
+            gap: 8px; 
+            padding: 8px 16px; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+            user-select: none; 
+        }
+
+        .menu-item a {
+            color: var(--win-text);
+            text-decoration: none;
+            display: inline-block;
+            padding: 4px 12px; 
+            border-radius: 20px; /* Redondeado suavizado que hace match con el Index[cite: 17] */
+            border: 1px solid transparent;
+            font-size: 9.5pt;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease; 
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-item a.active {
+            background-color: rgba(0, 0, 0, 0.12);
+            font-weight: bold;
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item span {
+            text-decoration: none; 
+        }
+
+        /* --- ÁREA INTERNA --- */
+        .window-body {
+            flex: 1; 
+            padding: 20px; 
+            display: flex; 
+            overflow: hidden; 
+        }
+
+        /* --- SECCIÓN ÚNICA DEL MOODBOARD --- */
+        .moodboard-section {
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+
+        .panel-title {
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 9.5pt; 
+            color: rgba(0, 0, 0, 0.6); 
+            letter-spacing: 1.5px; 
+            padding-left: 4px;
+        }
+
+        .moodboard-container {
+            flex: 1; 
+            background-color: var(--win-input-bg); 
+            border: 1px solid rgba(0,0,0,0.15); 
+            border-radius: 8px; 
+            padding: 24px; 
+            overflow-y: scroll; 
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.4); 
+        }
+
+        /* --- EFECTO MASONRY (MURO DE RECOORTES DENSO) --- */
+        .masonry-wall {
+            column-count: 4; 
+            column-gap: 24px;
+            width: 100%;
+        }
+
+        @media (max-width: 1200px) { .masonry-wall { column-count: 3; } }
+        @media (max-width: 800px) { .masonry-wall { column-count: 2; } }
+
+        /* --- ITEMS INDIVIDUALES DEL COLLAGE --- */
+        .mood-item {
+            break-inside: avoid; 
+            margin-bottom: 28px;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.45); /* Sombra suavizada integrada */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+        }
+
+        .mood-item:hover {
+            transform: scale(1.04) rotate(0deg) translateY(-4px) !important;
+            box-shadow: 0px 18px 35px rgba(0,0,0,0.6);
+            z-index: 10;
+        }
+
+        .mood-item.polaroid {
+            padding-bottom: 24px;
+            background-color: #faf6ee;
+        }
+
+        .mood-item.kraft {
+            background-color: #d1bfa7;
+            border: 1px dashed rgba(0,0,0,0.2);
+        }
+
+        .mood-item.raw-cut {
+            background: none;
+            padding: 0;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.5);
+        }
+
+        /* --- ELEMENTOS DE DISEÑO RETRO / ANALÓGICOS --- */
+        .mood-item.taped::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 70px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
+            border-left: 1px dashed rgba(0,0,0,0.1);
+            border-right: 1px dashed rgba(0,0,0,0.1);
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+            z-index: 2;
+        }
+
+        .mood-item.pinned::before {
+            content: '📍';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 12pt;
+            filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.4));
+            z-index: 3;
+        }
+
+        .mood-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            filter: sepia(8%) contrast(98%);
+            transition: filter 0.3s;
+        }
+
+        .mood-item:hover .mood-img {
+            filter: sepia(0%) contrast(100%);
+        }
+
+        .mood-label {
+            font-size: 8.5pt;
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+            color: #4a3e31;
+            margin-top: 8px;
+            text-align: center;
+            border-top: 1px dotted rgba(0,0,0,0.15);
+            padding-top: 6px;
+        }
+
+        /* ROTACIONES ALEATORIAS */
+        .rot-left-soft  { transform: rotate(-1.5deg); }
+        .rot-right-soft { transform: rotate(1.2deg); }
+        .rot-left-hard  { transform: rotate(-3.5deg); }
+        .rot-right-hard { transform: rotate(2.8deg); }
+        .rot-none       { transform: rotate(0deg); }
+
+        /* --- BARRA DE ESTADO INFERIOR MODERNIZADA --- */
+        .status-bar {
+            height: 32px; 
+            border-top: 1px solid rgba(0,0,0,0.1); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            gap: 6px; 
+            user-select: none; 
+        }
+
+        .status-field {
+            height: 80%; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            border-radius: 15px; 
+            background-color: rgba(0, 0, 0, 0.06); 
+            font-size: 8.5pt; 
+            color: rgba(0, 0, 0, 0.55); 
+        }
+
+        .status-field.flexible {
+            flex: 1; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        
+        <div class="title-bar">
+            <div class="title-text">
+                <span>📁</span> Estilo_Cottagecore.exe 
+            </div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                    <div class="win-btn" style="font-weight: bold;">X</div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Cottagecore.html"><span>O</span>utfits</a></div>
+            <div class="menu-item"><a href="Historia.html"><span>H</span>istoria</a></div>
+            <div class="menu-item"><a href="Referentes.html"><span>R</span>eferentes</a></div>
+            <div class="menu-item"><a href="#" class="active"><span>M</span>oodboard</a></div>
+            <div class="menu-item"><a href="Perfil.html"><span>P</span>erfil</a></div>
+        </div>
+
+        <div class="window-body">
+            
+            <div class="moodboard-section">
+                <div class="panel-title">Mesa de Inspiración</div>
+                <div class="moodboard-container">
+                    
+                    <div class="masonry-wall">
+                        
+                        <!-- Item 1 -->
+                        <div class="mood-item polaroid taped rot-left-soft">
+                            <img src="M1.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Textura de cuadros</div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="mood-item kraft pinned rot-right-soft">
+                            <img src="M2.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Foto del campo</div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="mood-item raw-cut rot-left-hard">
+                            <img src="M3.png" alt="Foto" class="mood-img">
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="mood-item polaroid pinned rot-right-hard">
+                            <img src="M4.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Lace_Details_Vint.jpg</div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="mood-item kraft taped rot-none">
+                            <img src="M5.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Batan_Wood_Study.bmp</div>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="mood-item polaroid rot-left-soft">
+                            <img src="M6.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Cozy_Corner_Insp.raw</div>
+                        </div>
+
+                        <!-- Item 7 -->
+                        <div class="mood-item raw-cut rot-right-soft">
+                            <img src="M7.png" alt="Foto" class="mood-img">
+                        </div>
+
+                        <!-- Item 8 -->
+                        <div class="mood-item polaroid taped rot-left-hard">
+                            <img src="M8.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Forest_Mood.png</div>
+                        </div>
+
+                        <!-- Item 9 -->
+                        <div class="mood-item kraft pinned rot-right-hard">
+                            <img src="M9.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Tea_Time_Ceramics.jpg</div>
+                        </div>
+
+                        <!-- Item 10 -->
+                        <div class="mood-item polaroid rot-none">
+                            <img src="M10.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Vintage_Boots_Ref.bmp</div>
+                        </div>
+
+                        <!-- Item 11 -->
+                        <div class="mood-item raw-cut rot-left-soft">
+                            <img src="M11.png" alt="Foto" class="mood-img">
+                        </div>
+
+                        <!-- Item 12 (Sintaxis corregida) -->
+                        <div class="mood-item polaroid taped rot-right-soft">
+                            <img src="M12.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Paleta de color</div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible" id="statusMessage">Mapeo de Moodboard completo. Total de recortes renderizados: 12.</div>
+            <div class="status-field">Modo: Collage Libre</div>
+            <div class="status-field">SYS_OK</div> 
+        </div>
+
+    </div>
+
+</body>
+</html>
