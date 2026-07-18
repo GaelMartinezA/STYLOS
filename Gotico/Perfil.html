@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estilo_Cottagecore.exe - Perfil Social Completo</title>
+    <title>Estilo_Gotico.exe - Perfil de Valerius</title>
     <style>
-        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX --- */
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX (GÓTICO) --- */
         :root {
-            --win-bg: rgba(174, 122, 167, 0.95); /* Menos translúcido para dar solidez en pantalla completa */
-            --win-edge-light: rgba(255, 255, 255, 0.4);  
-            --win-edge-shadow: rgba(155, 107, 155, 0.5); 
-            --win-edge-dark: #161a14;   
-            --win-text: #000000; 
-            --win-blue-start: #2f3a3d;  /* Tonos oliva profundo del ciclorama */
-            --win-blue-end: #4791a0; 
-            --win-input-bg: rgba(55, 70, 83, 0.55); /* Capa interna traslúcida */
-                }
+            --studio-light: #362240;  /* Violeta oscuro profundo del index */
+            --studio-shadow: #140d17; /* Negro purpúreo espectral */
+            --win-bg: rgba(26, 17, 31, 0.6); /* Acrílico ahumado translúcido */
+            --win-text: #ffffff; 
+            --win-blue-start: #0c080f;  
+            --win-blue-end: #25182c; 
+            --card-bg: rgba(37, 24, 44, 0.5); 
+            --inner-card: rgba(18, 11, 22, 0.7);
+            --accent-goth: #5a1827; /* Carmesí quemado para estados activos */
+        }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, sans-serif; }
 
         body {
-            /* DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX[cite: 17] */
+            /* DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX GÓTICO */
             background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
             background-color: var(--studio-shadow); 
             min-height: 100vh; 
@@ -30,7 +31,7 @@
             flex-direction: column;
         }
 
-        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA INTEGRAL (OCUPA TODO EL VIEWPORT) --- */
+        /* --- CONTENEDOR PRINCIPAL PANTALLA COMPLETA --- */
         .window {
             background-color: var(--win-bg); 
             width: 100vw; 
@@ -38,18 +39,17 @@
             color: var(--win-text); 
             display: flex; 
             flex-direction: column; 
-            
-            /* Glassmorphism avanzado para fundirse con el ciclorama posterior[cite: 17] */
             backdrop-filter: blur(20px); 
             -webkit-backdrop-filter: blur(20px); 
-            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.6);
         }
 
-        /* --- BARRA DE TÍTULO MODERNIZADA --- */
+        /* --- BARRA DE TÍTULO --- */
         .title-bar {
             height: 36px; background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%);
             color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-weight: 600;
             letter-spacing: 0.5px; user-select: none;
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.1);
         }
 
         .title-text {
@@ -59,33 +59,21 @@
             font-size: 10pt; 
         }
 
-        .title-controls {
-            display: flex; 
-            gap: 6px; 
-        }
-
         .win-btn {
-            width: 24px;
-            height: 22px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer; color: white;
+            width: 24px; height: 22px; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: white;
             transition: background 0.2s;
         }
 
         .win-btn:hover { background: rgba(255, 255, 255, 0.25); }
 
-        /* --- BARRA DE MENÚS (ESTILO INDEX) --- */
-        .menu-bar { display: flex; gap: 8px; padding: 8px 16px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); user-select: none; }
-        .menu-item a { color: black; text-decoration: none; padding: 4px 12px; border-radius: 20px; font-size: 9.5pt; transition: all 0.3s ease; }
-        .menu-item a:hover { background: rgba(255, 255, 255, 0.25); border-color: rgba(255, 255, 255, 0.2); }
-        .menu-item a.active { background: rgba(0, 0, 0, 0.12); font-weight: bold; }
+        /* --- BARRA DE MENÚS (DIRECCIONAMIENTO A LA CARPETA MADRE) --- */
+        .menu-bar { display: flex; gap: 8px; padding: 8px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); user-select: none; }
+        .menu-item a { color: var(--win-text); text-decoration: none; padding: 4px 12px; border-radius: 20px; font-size: 9.5pt; transition: all 0.3s ease; }
+        .menu-item a:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.1); }
+        .menu-item a.active { background: var(--accent-goth); font-weight: bold; border-color: rgba(255, 255, 255, 0.2); }
 
-        /* --- CUERPO PRINCIPAL EN PANTALLA COMPLETA --- */
+        /* --- CUERPO PRINCIPAL --- */
         .window-body { 
             flex: 1; 
             padding: 24px; 
@@ -94,7 +82,7 @@
             overflow: hidden; 
         }
 
-        /* Panel lateral izquierdo (Avatar y Datos principales) */
+        /* Panel lateral izquierdo: Personaje Gótico */
         .profile-sidebar { 
             width: 30%; 
             display: flex; 
@@ -109,30 +97,231 @@
             font-weight: bold; 
             text-transform: uppercase; 
             font-size: 9.5pt; 
-            color: rgba(0, 0, 0, 0.6); 
+            color: rgba(255, 255, 255, 0.6); 
             letter-spacing: 1.5px; 
             padding-left: 4px;
         }
 
         .avatar-box {
-            width: 100%; aspect-ratio: 1; border-radius: 16px; border: 1px solid rgba(255,255,255,0.15);
-            background: #1e1a14; overflow: hidden; display: flex; align-items: center; justify-content: center;
-            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.5); position: relative;
+            width: 100%; aspect-ratio: 1; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);
+            background: #0a070c; overflow: hidden; display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.7); position: relative;
         }
 
         .avatar-box::before {
             content: ''; position: absolute; width: 100%; height: 100%; 
-            background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); 
+            background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px); 
             background-size: 24px 24px; 
         }
         
         .avatar-box img { 
             max-width: 85%; max-height: 85%; object-fit: contain; 
-            -webkit-box-reflect: below 2px linear-gradient(to bottom, rgba(0,0,0,0) 65%, rgba(0,0,0,0.2) 100%);
-            filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.5)); 
+            -webkit-box-reflect: below 2px linear-gradient(to bottom, rgba(0,0,0,0) 65%, rgba(0,0,0,0.1) 100%);
+            filter: grayscale(100%) contrast(120%) drop-shadow(0px 8px 16px rgba(0,0,0,0.7)); 
         }
         
+        .user-meta { text-align: center; display: flex; flex-direction: column; gap: 6px; }
+        .username { color: #ffffff; font-size: 1.6rem; font-weight: bold; text-shadow: 0px 2px 4px rgba(0,0,0,0.5); }
+        .user-title { color: #8e8594; font-size: 10pt; font-family: "Courier New", monospace; letter-spacing: 0.5px; }
+
+        /* Panel contenedor principal derecho */
+        .profile-content { 
+            width: 70%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+            overflow-y: scroll; 
+            background-color: rgba(12, 8, 15, 0.6);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.6);
+        }
+        
+        .feed-box {
+            background: var(--inner-card); border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px;
+            box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
+        }
+
+        .section-title { color: #b59ebf; border-left: 3px solid var(--accent-goth); padding-left: 8px; font-size: 9pt; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
+        .bio-text { color: #d0cacf; font-size: 11pt; line-height: 1.6; text-align: justify; font-family: "Georgia", serif; }
+        
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+        .tag { background: rgba(90, 24, 39, 0.25); color: #e8cbe3; padding: 4px 12px; border-radius: 15px; font-size: 9pt; border: 1px solid rgba(90, 24, 39, 0.4); }
+
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .grid-item { display: flex; flex-direction: column; gap: 4px; }
+        .grid-label { color: #7f7385; font-size: 8.5pt; text-transform: uppercase; font-weight: bold; }
+        .grid-value { color: #ffffff; font-size: 10.5pt; font-family: "Georgia", serif; }
+
+        /* Barra de estado */
+        .status-bar { height: 32px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding: 0 12px; gap: 6px; user-select: none; }
+        .status-field { height: 80%; display: flex; align-items: center; padding: 0 12px; border-radius: 15px; background: rgba(255, 255, 255, 0.03); font-size: 8.5pt; color: rgba(255, 255, 255, 0.4); }
+        .status-field.flexible { flex: 1; }
+
+        /* --- ANIMACIÓN SISTEMA DE SIMBOLOS INFRAESTRUCTURALES --- */
+        #leaves-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
+        .leaf { position: absolute; top: -50px; display: inline-block; user-select: none; cursor: default; animation: fall linear forwards; }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+            15% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="leaves-container"></div>
+
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-text"><span>📁</span> Valerius_Crypt_Profile.social</div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../index.html" style="text-decoration: none; color: inherit;"><div class="win-btn" style="font-weight: bold;">X</div></a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Gotico.html">Outfits</a></div>
+            <div class="menu-item"><a href="Historia.html">Historia</a></div>
+            <div class="menu-item"><a href="Referentes.html">Referentes</a></div>
+            <div class="menu-item"><a href="Moodboard.html">Moodboard</a></div>
+            <div class="menu-item"><a href="#" class="active">Perfil</a></div>
+        </div>
+
+        <div class="window-body">
+            
+            <!-- Bloque Lateral Izquierdo: Valerius -->
+            <div class="profile-sidebar">
+                <div class="panel-title">Ficha de Identidad</div>
+                <div class="avatar-box">
+                    <img src="1.svg" alt="Valerius Profile">
+                </div>
+                <div class="user-meta">
+                    <div class="username">Valerius</div>
+                    <div class="user-title">@valerius_nocturne // Somber</div>
+                </div>
+            </div>
+
+            <!-- Feed Derecho: Información de la Estética Gótica -->
+            <div class="profile-content">
+                
+                <!-- Bio General -->
+                <div class="feed-box">
+                    <div class="section-title">Sobre mí / Retrato en la Sombra</div>
+                    <p class="bio-text">
+                        Habitante de la melancolía crepuscular y admirador de la arquitectura gótica antigua. Paso los días traduciendo textos antiguos de misterio, coleccionando candelabros de peltre y buscando la belleza en la decadencia romántica. Mi filosofía rechaza la efímera prisa contemporánea, refugiándome en la inmortalidad del arte sombrío.
+                    </p>
+                </div>
+
+                <!-- Hobbies e Identidad Colectiva -->
+                <div class="feed-box">
+                    <div class="section-title">Vibes & Corrientes Ideológicas</div>
+                    <p class="bio-text" style="margin-bottom: 8px;">
+                        Abrazando la elegancia del terciopelo negro, los cementerios victorianos y la poesía maldita bajo la luz de las velas.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">#GothAesthetic</span>
+                        <span class="tag">#PostPunk</span>
+                        <span class="tag">#Darkwave</span>
+                        <span class="tag">#LiteraturaGotica</span>
+                        <span class="tag">#VictorianMelancholy</span>
+                        <span class="tag">#BelaLugosi</span>
+                    </div>
+                </div>
+
+                <!-- Preferencias Culturales -->
+                <div class="feed-box">
+                    <div class="section-title">Archivos de Sonido & Páginas Nocturnas</div>
+                    <div class="info-grid">
+                        <div class="grid-item">
+                            <div class="grid-label">Audio & Ecos del Sótano:</div>
+                            <div class="grid-value">Gothic Rock, Post-Punk y Coldwave clásico. Rotando siempre vinilos de **Bauhaus**, **The Cure**, **Siouxsie and the Banshees** y las atmósferas oscuras de **Clan of Xymox**.</div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-label">Biblioteca de Relatos:</div>
+                            <div class="grid-value">Fascinado por el terror gótico clásico. Sumergido constantemente en las obras inmortales de **Edgar Allan Poe**, el *Drácula* de Bram Stoker y las novelas góticas de Mary Shelley.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elementos de Indumentaria y Diseño Atmosférico -->
+                <div class="feed-box">
+                    <div class="section-title">Bitácora del Guardarropa Espectral</div>
+                    <div class="info-grid">
+                        <div class="grid-item">
+                            <div class="grid-label">Textiles & Capas:</div>
+                            <div class="grid-value">Corsetería de satén opaco, gabardinas largas de cuero envejecido, encajes victorianos rotos y camisas de chorreras de gasa transparente.</div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-label">Accesorios Metálicos:</div>
+                            <div class="grid-value">Gargantillas de terciopelo con relicarios de plata, anillos macizos con motivos de calaveras y cadenas de crucifijos oxidados.</div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-label">Estética de Maquillaje:</div>
+                            <div class="grid-value">Bases pálidas mate de alta cobertura, delineados dramáticos angulares inspirados en la subcultura Deathrock y labios vino profundos.</div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-label">Proyecto Actual:</div>
+                            <div class="grid-value">Restaurando la encuadernación en piel de un volumen descatalogado de poesía del siglo XIX.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible">Sincronizado con el archivo central de la cultura oscura.</div>
+            <div class="status-field">24 Años</div>
+            <div class="status-field">Vibe: Somber</div>
+            <div class="status-field">Ubicación: The Crypt</div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE CAÍDA DE ICONOS GÓTICOS POR 5 SEGUNDOS -->
+    <script>
+        function createLeaf() {
+            const container = document.getElementById('leaves-container');
+            if (!container) return;
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            
+            // Iconos oscuros acordes al estilo
+            const leafTypes = ['🦇', '🕷️', '🥀', '🕯️', '⚰️'];
+            leaf.innerText = leafTypes[Math.floor(Math.random() * leafTypes.length)];
+            
+            leaf.style.left = Math.random() * 100 + 'vw';
+            leaf.style.fontSize = (Math.random() * 12 + 15) + 'px';
+            
+            const duration = Math.random() * 2.5 + 3; 
+            leaf.style.animationDuration = duration + 's';
+            leaf.style.animationDelay = Math.random() * 0.2 + 's'; 
+            
+            leaf.style.filter = `brightness(70%) contrast(120%)`;
+
+            container.appendChild(leaf);
+
+            setTimeout(() => { leaf.remove(); }, (duration + 1) * 1000);
+        }
+
+        const leafInterval = setInterval(createLeaf, 200);
+
+        setTimeout(() => { 
+            clearInterval(leafInterval); 
+            setTimeout(() => {
+                const container = document.getElementById('leaves-container');
+                if (container) container.remove();
+            }, 3500);
+        }, 5000);
+    </script>
+</body>
+</html>        
         .user-meta { text-align: center; display: flex; flex-direction: column; gap: 6px; }
         .username { color: #ffffff; font-size: 1.6rem; font-weight: bold; text-shadow: 0px 2px 4px rgba(0,0,0,0.3); }
         .user-title { color: #d8ceb9; font-size: 10pt; font-family: "Courier New", monospace; letter-spacing: 0.5px; }
