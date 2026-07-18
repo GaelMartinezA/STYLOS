@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo_Cottagecore.exe - Perfil Social Completo</title>
+    <style>
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX --- */
+        :root {
+            --win-bg: rgba(174, 122, 167, 0.95); /* Menos translúcido para dar solidez en pantalla completa */
+            --win-edge-light: rgba(255, 255, 255, 0.4);  
+            --win-edge-shadow: rgba(155, 107, 155, 0.5); 
+            --win-edge-dark: #161a14;   
+            --win-text: #000000; 
+            --win-blue-start: #2f3a3d;  /* Tonos oliva profundo del ciclorama */
+            --win-blue-end: #4791a0; 
+            --win-input-bg: rgba(55, 70, 83, 0.55); /* Capa interna traslúcida */
+                }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, sans-serif; }
+
+        body {
+            /* DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX[cite: 17] */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow); 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA INTEGRAL (OCUPA TODO EL VIEWPORT) --- */
+        .window {
+            background-color: var(--win-bg); 
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); 
+            display: flex; 
+            flex-direction: column; 
+            
+            /* Glassmorphism avanzado para fundirse con el ciclorama posterior[cite: 17] */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BARRA DE TÍTULO MODERNIZADA --- */
+        .title-bar {
+            height: 36px; background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%);
+            color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-weight: 600;
+            letter-spacing: 0.5px; user-select: none;
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 6px; 
+        }
+
+        .win-btn {
+            width: 24px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer; color: white;
+            transition: background 0.2s;
+        }
+
+        .win-btn:hover { background: rgba(255, 255, 255, 0.25); }
+
+        /* --- BARRA DE MENÚS (ESTILO INDEX) --- */
+        .menu-bar { display: flex; gap: 8px; padding: 8px 16px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); user-select: none; }
+        .menu-item a { color: black; text-decoration: none; padding: 4px 12px; border-radius: 20px; font-size: 9.5pt; transition: all 0.3s ease; }
+        .menu-item a:hover { background: rgba(255, 255, 255, 0.25); border-color: rgba(255, 255, 255, 0.2); }
+        .menu-item a.active { background: rgba(0, 0, 0, 0.12); font-weight: bold; }
+
+        /* --- CUERPO PRINCIPAL EN PANTALLA COMPLETA --- */
+        .window-body { 
+            flex: 1; 
+            padding: 24px; 
+            display: flex; 
+            gap: 24px; 
+            overflow: hidden; 
+        }
+
+        /* Panel lateral izquierdo (Avatar y Datos principales) */
+        .profile-sidebar { 
+            width: 30%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 20px; 
+            flex-shrink: 0; 
+        }
+        
+        .panel-title {
+            align-self: flex-start;
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 9.5pt; 
+            color: rgba(0, 0, 0, 0.6); 
+            letter-spacing: 1.5px; 
+            padding-left: 4px;
+        }
+
+        .avatar-box {
+            width: 100%; aspect-ratio: 1; border-radius: 16px; border: 1px solid rgba(255,255,255,0.15);
+            background: #1e1a14; overflow: hidden; display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.5); position: relative;
+        }
+
+        .avatar-box::before {
+            content: ''; position: absolute; width: 100%; height: 100%; 
+            background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); 
+            background-size: 24px 24px; 
+        }
+        
+        .avatar-box img { 
+            max-width: 85%; max-height: 85%; object-fit: contain; 
+            -webkit-box-reflect: below 2px linear-gradient(to bottom, rgba(0,0,0,0) 65%, rgba(0,0,0,0.2) 100%);
+            filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.5)); 
+        }
+        
+        .user-meta { text-align: center; display: flex; flex-direction: column; gap: 6px; }
+        .username { color: #ffffff; font-size: 1.6rem; font-weight: bold; text-shadow: 0px 2px 4px rgba(0,0,0,0.3); }
+        .user-title { color: #d8ceb9; font-size: 10pt; font-family: "Courier New", monospace; letter-spacing: 0.5px; }
+
+        /* Panel contenedor principal derecho (Scrollable) */
+        .profile-content { 
+            width: 70%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+            overflow-y: scroll; 
+            background-color: rgba(61, 53, 40, 0.4);
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .feed-box {
+            background: var(--inner-card); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px;
+            box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .section-title { color: #dfc69a; font-size: 9pt; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
+        .bio-text { color: #f7eed8; font-size: 11pt; line-height: 1.6; text-align: justify; }
+        
+        /* Sistema de tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+        .tag { background: rgba(223, 198, 154, 0.15); color: #dfc69a; padding: 4px 12px; border-radius: 15px; font-size: 9pt; border: 1px solid rgba(223, 198, 154, 0.2); }
+
+        /* Detalles en cuadrícula */
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .grid-item { display: flex; flex-direction: column; gap: 4px; }
+        .grid-label { color: #ae9d7a; font-size: 8.5pt; text-transform: uppercase; font-weight: bold; }
+        .grid-value { color: #ffffff; font-size: 10.5pt; }
+
+        /* Barra de estado */
+        .status-bar { height: 32px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; align-items: center; padding: 0 12px; gap: 6px; user-select: none; }
+        .status-field { height: 80%; display: flex; align-items: center; padding: 0 12px; border-radius: 15px; background: rgba(0, 0, 0, 0.06); font-size: 8.5pt; color: rgba(0, 0, 0, 0.55); }
+        .status-field.flexible { flex: 1; }
+
+        /* --- CORRECCIÓN FÍSICA Y ANIMACIÓN DEL SISTEMA DE HOJAS --- */
+        #leaves-container { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            pointer-events: none; 
+            z-index: 9999; 
+            overflow: hidden; 
+        }
+
+        .leaf {
+            position: absolute;
+            top: -50px; /* Inicializa completamente fuera para evitar saltos ópticos */
+            display: inline-block;
+            user-select: none;
+            cursor: default;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) translateX(80px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor nativo para la lluvia de hojas -->
+    <div id="leaves-container"></div>
+
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-text"><span>📁</span> Axel_Gael_Profile.social</div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                    <div class="win-btn" style="font-weight: bold;">X</div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Gotico.html">Outfits</a></div>
+            <div class="menu-item"><a href="Historia.html">Historia</a></div>
+            <div class="menu-item"><a href="Referentes.html">Referentes</a></div>
+            <div class="menu-item"><a href="Moodboard.html">Moodboard</a></div>
+            <div class="menu-item"><a href="#" class="active">Perfil</a></div>
+        </div>
+
+        <div class="window-body">
+            
+            <!-- Bloque Lateral Izquierdo -->
+            <div class="profile-sidebar">
+                <div class="panel-title">Ficha de Identidad</div>
+                <div class="avatar-box">
+                    <img src="P1.png" alt="Axel Gael">
+                </div>
+                <div class="user-meta">
+                    <div class="username">Axel Gael</div>
+                    <div class="user-title">@gael_martinez // Active</div>
+                </div>
+            </div>
+
+            <!-- Feed Scrollable Derecho -->
+            <div class="profile-content">
+                
+                <!-- Bio General -->
+                <div class="feed-box">
+                    <div class="section-title">Sobre mí / Presentación</div>
+                    <p class="bio-text">
+                        Estudiante de último año en **Diseño Integral** en la **UAM Cuajimalpa**. Apasionado por los procesos de creación analógicos y digitales, buscando siempre un punto de encuentro entre la tecnología moderna y el diseño lento, consciente y artesanal.
+                    </p>
+                </div>
+
+                <!-- Hobbies e Identidad Colectiva -->
+                <div class="feed-box">
+                    <div class="section-title">Vibes & Intereses Personales</div>
+                    <p class="bio-text" style="margin-bottom: 8px;">
+                        Idealizando la vida tranquila, los paseos por el campo y las tardes creativas libres de la prisa urbana.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">#Cottagecore</span>
+                        <span class="tag">#MasaMadre</span>
+                        <span class="tag">#BotanicaUrbana</span>
+                        <span class="tag">#TejidoDePunto</span>
+                        <span class="tag">#Senderismo</span>
+                        <span class="tag">#UpperLowerSplit</span>
+                        <span class="tag">#GymRoutine</span>
+                    </div>
+                </div>
+
+                <!-- Preferencias Culturales Expandidas -->
+                <div class="feed-box">
+                    <div class="section-title">Ficheros de Cultura & Entretenimiento</div>
+                    <div class="info-grid">
+                        <div class="grid-item">
+                            <div class="grid-label">Audio & Frecuencias:</div>
+                            <div class="grid-value">Indie Folk, Chamber Pop. Rotando siempre discos de **Aurora** y **Julieta Venegas**.</div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-label">Hobbies Multimedia:</div>
+                            <div class="grid-value">Fan de los entornos mágicos y la cultura pop. Actualmente inmerso en **Hogwarts Legacy**, explorando el universo de **Harry Potter** y consumiendo todo sobre **Marvel**.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Especificaciones Técnicas de Diseño -->
+                <div class="feed-box">
+                    <div class="section-title">Caja de Herramientas Creativas</div>
+                    <div class="info-grid">
+                        <div class="grid-item">
+                            <div class="grid-label">Modelado & Planos:</div>
+                            <div class="grid-value">Blender, AutoCAD.</div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-label">UI/UX & Gráfico:</div>
+                            <div class="grid-value">Figma, Adobe Illustrator.</div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-label">Código Front-End:</div>
+                            <div class="grid-value">Estructuración limpia en HTML y CSS.</div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-label">Proyectos Core:</div>
+                            <div class="grid-value">Desarrollando la plataforma interactiva **DO-DO**.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible">Fichero de perfil social sincronizado con el entorno de visualización global.</div>
+            <div class="status-field">21 Años</div>
+            <div class="status-field">Métricas: 1.60 m // 56 kg</div>
+            <div class="status-field">Ubicación: Centro, CDMX</div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE LAS HOJAS POR 5 SEGUNDOS (LOGICA CORREGIDA) -->
+    <script>
+        function createLeaf() {
+            const container = document.getElementById('leaves-container');
+            if (!container) return;
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            const leafTypes = ['🍂', '🍃','🌿','🌼','🍄'];
+            leaf.innerText = leafTypes[Math.floor(Math.random() * leafTypes.length)];
+            
+            leaf.style.left = Math.random() * 100 + 'vw';
+            leaf.style.fontSize = (Math.random() * 14 + 14) + 'px';
+            
+            const duration = Math.random() * 2.5 + 3; // Caída controlada y suave (3 a 5.5s)
+            leaf.style.animationDuration = duration + 's';
+            leaf.style.animationDelay = Math.random() * 0.3 + 's'; 
+            
+            leaf.style.filter = `sepia(30%) hue-rotate(${Math.random() * 20 - 10}deg)`;
+
+            container.appendChild(leaf);
+
+            setTimeout(() => { leaf.remove(); }, (duration + 1) * 1000);
+        }
+
+        const leafInterval = setInterval(createLeaf, 180); // Frecuencia de nacimiento optimizada
+
+        setTimeout(() => { 
+            clearInterval(leafInterval); 
+            setTimeout(() => {
+                const container = document.getElementById('leaves-container');
+                if (container) container.remove();
+            }, 3500);
+        }, 5000);
+    </script>
+</body>
+</html>

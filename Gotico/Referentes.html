@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo_Cottagecore.exe - Referentes Modernizados</title>
+    <style>
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX --- */
+        :root {
+            --win-bg: rgba(66, 0, 0, 0.95); /* Menos translúcido para dar solidez en pantalla completa */
+            --win-edge-light: rgba(135, 130, 130, 0.4);  
+            --win-edge-shadow: rgba(155, 107, 155, 0.5); 
+            --win-edge-dark: #473c47;   
+            --win-text: #ffffff; 
+            --win-blue-start: #454545;  /* Tonos oliva profundo del ciclorama */
+            --win-blue-end: rgb(46, 0, 0); 
+            --win-input-bg: rgba(55, 70, 83, 0.55); /* Capa interna traslúcida */
+        }
+        * {
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            /* Se modernizan las fuentes globales usando el stack limpio del UI del Index */
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+            font-size: 11pt; 
+        }
+
+        body {
+            /* SE ADOPTA EL DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow); 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA ULTRA-TRANSLÚCIDA --- */
+        .window {
+            background-color: var(--win-bg); 
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); 
+            display: flex; 
+            flex-direction: column; 
+            
+            /* Glassmorphism avanzado para fundirse con el ciclorama 3D posterior */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BARRA DE TÍTULO MODERNIZADA --- */
+        .title-bar {
+            height: 36px; 
+            background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 16px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            user-select: none; 
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15); 
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 6px; 
+        }
+
+        .win-btn {
+            width: 24px; 
+            height: 22px; 
+            background-color: rgba(255, 255, 255, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 9pt; 
+            cursor: pointer; 
+            color: #ffffff; 
+            transition: background-color 0.2s, transform 0.1s; 
+        }
+
+        .win-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+        }
+
+        /* --- BARRA DE MENÚS (ESTILO BOTONES SUTILES DEL INDEX) --- */
+        .menu-bar {
+            display: flex; 
+            gap: 8px; 
+            padding: 8px 16px; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+            user-select: none; 
+        }
+
+        .menu-item a {
+            color: var(--win-text);
+            text-decoration: none;
+            display: inline-block;
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            border: 1px solid transparent;
+            font-size: 9.5pt;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease; 
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-item a.active {
+            background-color: rgba(0, 0, 0, 0.12);
+            font-weight: bold;
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- ÁREA INTERNA --- */
+        .window-body {
+            flex: 1; 
+            padding: 20px; 
+            display: flex; 
+            overflow: hidden; 
+        }
+
+        /* --- SECCIÓN ÚNICA DE REFERENTES (ANCHO COMPLETO) --- */
+        .referents-section {
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+
+        .panel-title {
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 9.5pt; 
+            color: rgba(0, 0, 0, 0.6); 
+            letter-spacing: 1.5px; 
+            padding-left: 4px;
+        }
+
+        .referents-container {
+            flex: 1; 
+            background-color: var(--win-input-bg); 
+            border: 1px solid rgba(0,0,0,0.15); 
+            border-radius: 8px; 
+            padding: 24px; 
+            overflow-y: scroll; 
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.4); 
+        }
+
+        /* --- CUADRÍCULA SIMÉTRICA A 2 COLUMNAS GIGANTES --- */
+        .referents-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 24px; 
+            width: 100%;
+        }
+
+        /* Fichas estilizadas como micro-tarjetas de datos flotantes */
+        .profile-card {
+            background-color: rgba(33, 28, 21, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 24px; 
+            display: flex;
+            align-items: center; 
+            gap: 24px;
+            box-shadow: 0px 12px 24px rgba(0,0,0,0.4);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s, border-color 0.25s, box-shadow 0.4s;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-4px);
+            background-color: rgba(33, 28, 21, 0.75);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0px 16px 32px rgba(0,0,0,0.5);
+        }
+
+        /* Contenedor del Avatar Circular con Reflejo */
+        .avatar-wrap {
+            width: 140px; 
+            height: 140px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%; 
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: inset 0px 4px 10px rgba(0,0,0,0.6);
+            /* EFECTO DE REFLEJO INTEGRADO AL ESTILO INDEX */
+            -webkit-box-reflect: below 2px linear-gradient(to bottom, rgba(0,0,0,0) 75%, rgba(0,0,0,0.2) 100%);
+        }
+
+        .avatar-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover .avatar-wrap img {
+            transform: scale(1.05);
+        }
+
+        /* Contenedor de Texto */
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #f7eed8;
+        }
+
+        .profile-info h2 {
+            font-size: 15pt; 
+            color: #dfc69a;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px dashed rgba(255,255,255,0.15);
+            padding-bottom: 6px;
+        }
+
+        /* Meta Tags Técnicos */
+        .meta-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 8pt;
+            background-color: rgba(174, 157, 122, 0.15);
+            color: #dfc69a;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(174, 157, 122, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Biografía */
+        .profile-bio {
+            font-size: 10.5pt; 
+            line-height: 1.5;
+            text-align: justify;
+            color: #e8e0d0;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1000px) {
+            .referents-grid {
+                grid-template-columns: 1fr; 
+                gap: 16px;
+            }
+        }
+
+        /* --- BARRA DE ESTADO INFERIOR MODERNIZADA --- */
+        .status-bar {
+            height: 32px; 
+            border-top: 1px solid rgba(0,0,0,0.1); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            gap: 6px; 
+            user-select: none; 
+        }
+
+        .status-field {
+            height: 80%; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            border-radius: 15px; 
+            background-color: rgba(0, 0, 0, 0.06); 
+            font-size: 8.5pt; 
+            color: rgba(0, 0, 0, 0.55); 
+        }
+
+        .status-field.flexible {
+            flex: 1; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        
+        <div class="title-bar">
+            <div class="title-text">
+                <span>📁</span> Estilo_Cottagecore.exe 
+            </div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                    <div class="win-btn" style="font-weight: bold;">X</div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Gotico.html"><span>O</span>utfits</a></div>
+            <div class="menu-item"><a href="Historia.html"><span>H</span>istoria</a></div>
+            <div class="menu-item"><a href="#" class="active"><span>R</span>eferentes</a></div>
+            <div class="menu-item"><a href="Moodboard.html"><span>M</span>oodboard</a></div>
+            <div class="menu-item"><a href="Perfil.html"><span>P</span>erfil</a></div>
+        </div>
+
+        <div class="window-body">
+            
+            <div class="referents-section">
+                <div class="panel-title">Ficheros de Iconos Culturales y de Estilo</div>
+                <div class="referents-container">
+                    <div class="referents-grid">
+                        
+                        <!-- Ficha 1 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R1.png" alt="Mujercitas">
+                            </div>
+                            <div class="profile-info">
+                                <h2>BAUHAUS</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Post-punk</span>
+                                    <span class="tag">Oscuridad</span>
+                                    <span class="tag">Vanguardia</span>
+                                </div>
+                                <p class="profile-bio">
+                                   Considerada la banda fundadora del movimiento gótico, consolidó la estética y el sonido de la subcultura a finales de los años setenta. Su imagen, basada en vestimenta negra, maquillaje de alto contraste y una atmósfera sombría, sentó las bases visuales que aún definen el estilo gótico contemporáneo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ficha 2 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R2.png" alt="Anne with an E">
+                            </div>
+                            <div class="profile-info">
+                                <h2>THE CROW (1994)</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Melancolía</span>
+                                    <span class="tag">Cuero</span>
+                                    <span class="tag">Rebeldia</span>
+                                </div>
+                                <p class="profile-bio">
+                                    Obra cinematográfica convertida en un referente de la estética gótica de los años noventa. Su diseño de vestuario combina cuero negro, gabardinas largas, botas militares y maquillaje monocromático, construyendo una imagen oscura, melancólica y de fuerte influencia post-punk.
+
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ficha 3 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R3.png" alt="Paula Sutton">
+                            </div>
+                            <div class="profile-info">
+                                <h2>WEDNESDAY (Merlina Addams)</h2>
+                                <div class="meta-tags">
+                                    
+                                    <span class="tag">Oscuridad</span>
+                                    <span class="tag">Misterio</span>
+                                    <span class="tag">Dramatico</span>
+                                </div>
+                                <p class="profile-bio">
+                                    Ícono de la cultura popular cuya estética mezcla influencias victorianas, académicas y góticas. Su vestuario destaca por vestidos negros, cuellos blancos, siluetas sobrias y una paleta monocromática que ha inspirado numerosas reinterpretaciones de la moda gótica contemporánea.
+                                </div>
+                        </div>
+
+                        <!-- Ficha 4 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R4.png" alt="Florence Welch">
+                            </div>
+                            <div class="profile-info">
+                                <h2>DRÁCULA de Bram Stoker (1992)</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Romanticismo</span>
+                                    <span class="tag">Elegancia</span>
+                                    <span class="tag">Ornamentacion</span>
+                                </div>
+                                <p class="profile-bio">
+                                    Producción cinematográfica reconocida por su elaborado diseño de vestuario inspirado en la época victoriana y el romanticismo oscuro. Destaca por el uso de terciopelo, encajes, corsés, capas y detalles ornamentales que reforzaron la influencia histórica y elegante dentro de la moda gótica.
+                                </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible" id="statusMessage">Base de datos de Referentes abierta. Formato: Doble Columna Gigante.</div>
+            <div class="status-field">Registros: 4</div>
+            <div class="status-field">SYS_OK</div> 
+        </div>
+
+    </div>
+
+</body>
+</html>

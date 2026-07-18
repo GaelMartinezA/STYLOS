@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style_Manager_v1.0.exe - Fullscreen</title>
+    <style>
+        /* --- PALETA DE COLOR Y CONFIGURACIÓN VINTAGE MODERNIZADA (ESTILO INDEX) --- */
+        :root {
+            --win-bg: rgba(66, 0, 0, 0.95); /* Menos translúcido para dar solidez en pantalla completa */
+            --win-edge-light: rgba(135, 130, 130, 0.4);  
+            --win-edge-shadow: rgba(155, 107, 155, 0.5); 
+            --win-edge-dark: #473c47;   
+            --win-text: #ffffff; 
+            --win-blue-start: #454545;  /* Tonos oliva profundo del ciclorama */
+            --win-blue-end: rgb(46, 0, 0); 
+            --win-input-bg: rgba(55, 70, 83, 0.55); /* Capa interna traslúcida */
+        }
+
+        * {
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: "MS Sans Serif", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+            font-size: 11pt; 
+            image-rendering: pixelated; 
+        }
+
+        body {
+            background-color: #fae2ff; 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: OCUPA TODO EL VIEWPORT --- */
+        .window {
+            background-color: var(--win-bg); 
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); 
+            display: flex; 
+            flex-direction: column; 
+            
+            /* Efecto Aero / Glassmorphism */
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            
+            /* Sombra interna para dar profundidad en los bordes de la pantalla */
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- BARRA DE TÍTULO --- */
+        .title-bar {
+            height: 32px; 
+            background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 12px; 
+            font-weight: bold; 
+            user-select: none; 
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.2); 
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 4px; 
+        }
+
+        .win-btn {
+            width: 22px; 
+            height: 20px; 
+            background-color: rgba(255, 255, 255, 0.15); 
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 9pt; 
+            cursor: pointer; 
+            color: #ffffff; 
+            transition: background-color 0.2s; 
+        }
+
+        .win-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3); 
+        }
+
+        /* --- BARRA DE MENÚS --- */
+        .menu-bar {
+            display: flex; 
+            gap: 5px; 
+            padding: 6px 12px; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15); 
+            user-select: none; 
+        }
+
+        .menu-item a {
+            color: var(--win-text);
+            text-decoration: none;
+            display: inline-block;
+            padding: 2px 8px; 
+            border-radius: 4px; 
+            transition: background-color 0.2s; 
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+        }
+
+        .menu-item a.active {
+            background-color: rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            outline: 1px dotted rgba(0, 0, 0, 0.4);
+        }
+
+        .menu-item span {
+            text-decoration: underline; 
+        }
+
+        /* --- ÁREA INTERNA RESPONSIVA AL ALTO --- */
+        .window-body {
+            flex: 1; 
+            padding: 16px; 
+            display: flex; 
+            gap: 16px; 
+            overflow: hidden; 
+        }
+
+        /* --- SECCIÓN IZQUIERDA: PERSONAJE --- */
+        .character-section {
+            width: 40%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+        }
+
+        .panel-title {
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 10pt; 
+            color: rgba(255,255,255,0.7); 
+            letter-spacing: 1px; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
+        }
+
+        .character-viewport {
+            flex: 1; 
+            background-color: #211c15; 
+            border: 1px solid rgba(0,0,0,0.3); 
+            border-radius: 6px; 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            overflow: hidden; 
+            box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.6); 
+        }
+
+        .character-viewport::before {
+            content: ''; 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); 
+            background-size: 20px 20px; 
+        }
+
+        .character-placeholder {
+            max-width: 95%; 
+            max-height: 95%; 
+            object-fit: contain; 
+            z-index: 2; 
+            filter: drop-shadow(0px 15px 25px rgba(0, 0, 0, 0.6)); 
+        }
+
+        /* --- SECCIÓN DERECHA: INVENTARIO --- */
+        .inventory-section {
+            width: 60%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+        }
+
+        .inventory-container {
+            flex: 1; 
+            background-color: var(--win-input-bg); 
+            border: 1px solid rgba(0,0,0,0.2); 
+            border-radius: 6px; 
+            padding: 12px; 
+            overflow-y: scroll; 
+            box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.5); 
+        }
+
+        .inventory-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 12px; 
+        }
+
+        .inventory-slot {
+            aspect-ratio: 1; 
+            background-color: rgba(239, 233, 218, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 8px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 12px; 
+            cursor: pointer; 
+            position: relative; 
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s ease, box-shadow 0.25s ease; 
+        }
+
+        .inventory-slot:hover {
+            background-color: rgba(223, 198, 154, 0.25); 
+            transform: translateY(-5px) scale(1.03); 
+            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.5); 
+            border-color: rgba(255, 255, 255, 0.25); 
+        }
+
+        .inventory-slot.selected {
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-color: #ffffff; 
+            transform: translateY(0) scale(0.98); 
+            box-shadow: inset 0px 3px 6px rgba(0,0,0,0.4); 
+        }
+
+        .inventory-slot img {
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; 
+            filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.35)); 
+        }
+
+        .item-label {
+            position: absolute; 
+            bottom: 4px; 
+            left: 0; 
+            width: 100%; 
+            text-align: center; 
+            font-size: 7.5pt; 
+            color: #ccc; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            padding: 0 4px; 
+        }
+
+        .inventory-slot.selected .item-label {
+            color: #333333; 
+        }
+
+        /* --- BARRA DE ESTADO INFERIOR --- */
+        .status-bar {
+            height: 28px; 
+            border-top: 1px solid rgba(0,0,0,0.15); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 8px; 
+            gap: 4px; 
+            user-select: none; 
+        }
+
+        .status-field {
+            height: 100%; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 10px; 
+            border-radius: 4px; 
+            background-color: rgba(0, 0, 0, 0.08); 
+            font-size: 9pt; 
+            color: rgba(0, 0, 0, 0.6); 
+        }
+
+        .status-field.flexible {
+            flex: 1; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- El div de shortcuts del escritorio se eliminó para limpiar el fondo -->
+
+    <div class="window">
+        
+        <div class="title-bar">
+            <div class="title-text">
+                <span>📁</span> Style_Editor_Desktop.exe 
+            </div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                <div class="win-btn" style="font-weight: bold;">X</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="#" class="active"><span>O</span>utfits</a></div> 
+            <div class="menu-item"><a href="Historia.html"><span>H</span>istoria</a></div> 
+            <div class="menu-item"><a href="Referentes.html"><span>R</span>eferentes</a></div> 
+            <div class="menu-item"><a href="moodboard.html"><span>M</span>oodboard</a></div> 
+            <div class="menu-item"><a href="Perfil.html"><span>P</span>erfil</a></div> 
+        </div>
+
+        <div class="window-body">
+            
+            <div class="character-section">
+                <div class="panel-title">CLARA</div> 
+                <div class="character-viewport">
+                    <img src="1comp.png" alt="Personaje Base" class="character-placeholder" id="characterView"> 
+                </div>
+            </div>
+
+            <div class="inventory-section">
+                <div class="panel-title">Inventario de Prendas</div> 
+                <div class="inventory-container">
+                    <div class="inventory-grid">
+                        
+                        <div class="inventory-slot" onclick="selectSlot(this, '1.svg')"> 
+                            <img src="1.png" alt="Item"> 
+                            <div class="item-label">Pantalon</div> 
+                        </div>
+
+                        <div class="inventory-slot" onclick="selectSlot(this, '3.svg')"> 
+                            <img src="2.png" alt="Item"> 
+                            <div class="item-label">Sueter</div> 
+                        </div>
+
+                        <div class="inventory-slot" onclick="selectSlot(this, '2.svg')"> 
+                            <img src="3.png" alt="Item"> 
+                            <div class="item-label">Blusa</div> 
+                        </div>
+
+                        <div class="inventory-slot" onclick="selectSlot(this, '4.svg')"> 
+                            <img src="4.png" alt="Item"> 
+                            <div class="item-label">Botas</div> 
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible" id="statusMessage">Listo. Selecciona una prenda para equipar.</div> 
+            <div class="status-field">Slots: 7</div>
+            <div class="status-field">SYS_OK</div> 
+        </div>
+
+    </div>
+
+    <script>
+        function selectSlot(element, garmentSrc) { //
+            document.querySelectorAll('.inventory-slot').forEach(slot => { //
+                slot.classList.remove('selected'); //
+            });
+            
+            element.classList.add('selected'); //
+            
+            const filename = element.querySelector('.item-label').innerText; //
+            document.getElementById('statusMessage').innerText = `Cargando asset: ${filename} -> Renderizado en tiempo real.`; //
+            
+            if (garmentSrc) { //
+                document.getElementById('characterView').src = garmentSrc; //
+            }
+        }
+    </script>
+</body>
+</html>
