@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo_Cottagecore.exe - Historia</title>
+    <style>
+        /* --- IMPORTACIÓN DE FUENTES DESDE LOS ARCHIVOS PROPORCIONADOS --- */
+        @font-face {
+            font-family: "JMH Typewriter";
+            src: local("JMH Typewriter Regular"), local("JMHTypewriter-Regular");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "JMH Typewriter";
+            src: local("JMH Typewriter Bold"), local("JMHTypewriter-Bold");
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX --- */
+        :root {
+            --studio-light: #343d2f;  /* Tonos oliva profundo extraídos del index */
+            --studio-shadow: #161a14; 
+            --win-bg: rgba(174, 157, 122, 0.95); /* Mucho más translúcido para fundirse con el fondo */
+            --win-text: #000000; 
+            --win-blue-start: #232a20;  
+            --win-blue-end: #3f493b; 
+            --win-input-bg: rgba(61, 53, 40, 0.6); /* Capa interna oscura traslúcida */
+        }
+
+        * {
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            /* Se modernizan las fuentes globales usando el stack limpio del UI del Index */
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+            font-size: 11pt; 
+        }
+
+        body {
+            /* SE ADOPTA EL DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow); 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA ULTRA-TRANSLÚCIDA --- */
+        .window {
+            background-color: var(--win-bg); 
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); 
+            display: flex; 
+            flex-direction: column; 
+            
+            /* Glassmorphism avanzado para fundirse con el ciclorama 3D posterior */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BARRA DE TÍTULO MODERNIZADA --- */
+        .title-bar {
+            height: 36px; 
+            background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 16px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            user-select: none; 
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15); 
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 6px; 
+        }
+
+        .win-btn {
+            width: 24px; 
+            height: 22px; 
+            background-color: rgba(255, 255, 255, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 9pt; 
+            cursor: pointer; 
+            color: #ffffff; 
+            transition: background-color 0.2s, transform 0.1s; 
+        }
+
+        .win-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+        }
+
+        /* --- BARRA DE MENÚS (ESTILO BOTONES SUTILES DEL INDEX) --- */
+        .menu-bar {
+            display: flex; 
+            gap: 8px; 
+            padding: 8px 16px; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+            user-select: none; 
+        }
+
+        .menu-item a {
+            color: var(--win-text);
+            text-decoration: none;
+            display: inline-block;
+            padding: 4px 12px; 
+            border-radius: 20px; /* Redondeado suavizado que hace match con el botón Siguiente */
+            border: 1px solid transparent;
+            font-size: 9.5pt;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease; 
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-item a.active {
+            background-color: rgba(0, 0, 0, 0.12);
+            font-weight: bold;
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item span {
+            text-decoration: none; 
+        }
+
+        /* --- ÁREA INTERNA --- */
+        .window-body {
+            flex: 1; 
+            padding: 20px; 
+            display: flex; 
+            overflow: hidden; 
+        }
+
+        /* --- SECCIÓN ÚNICA DE HISTORIA (OCUPA EL 100%) --- */
+        .history-section {
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+
+        .panel-title {
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 9.5pt; 
+            color: rgba(0, 0, 0, 0.6); 
+            letter-spacing: 1.5px; 
+            padding-left: 4px;
+        }
+
+        /* --- APLICACIÓN EXCLUSIVA DE LA FUENTE EN EL CONTENIDO DE HISTORIA --- */
+        .history-container {
+            flex: 1; 
+            background-color: var(--win-input-bg); 
+            border: 1px solid rgba(0,0,0,0.15); 
+            border-radius: 8px; 
+            padding: 24px; 
+            overflow-y: scroll; 
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.4); 
+            color: #f7eed8; 
+            font-family: "JMH Typewriter", "Courier New", Courier, monospace; 
+        }
+
+        .history-container * {
+            font-family: "JMH Typewriter", "Courier New", Courier, monospace; 
+        }
+
+        /* --- MAQUETACIÓN DEL CONTENIDO CON MARGEN PUNTEADO --- */
+        .history-content {
+            width: 100%; 
+            max-width: 100%; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: row; 
+            gap: 40px; 
+            line-height: 1.6; 
+            border: 2px dotted rgba(247, 238, 216, 0.4); 
+            padding: 24px;
+            border-radius: 6px;
+        }
+
+        /* Bloque de Textos (Izquierda) */
+        .text-block {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- AJUSTE DE TAMAÑOS DE LETRA --- */
+        .history-content h2 {
+            font-size: 18pt; 
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.15); 
+            padding-bottom: 8px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: #dfc69a; 
+            margin-top: 10px;
+        }
+
+        .history-content h3 {
+            font-size: 14pt; 
+            color: #f7eed8;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .history-content p {
+            font-size: 13pt; 
+            text-align: justify; 
+        }
+
+        .history-content ul {
+            padding-left: 24px;
+            font-size: 13pt; 
+        }
+
+        .history-content li {
+            margin-bottom: 8px;
+            font-size: 13pt;
+        }
+
+        /* --- GALERÍA DE IMÁGENES COLAPSADA A LA DERECHA --- */
+        .history-gallery {
+            width: 350px; 
+            display: flex;
+            flex-direction: column; 
+            gap: 24px;
+            flex-shrink: 0; 
+        }
+
+        .gallery-item {
+            background-color: rgba(0,0,0,0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 8px; 
+            padding: 12px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 8px; 
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s ease, box-shadow 0.4s ease; 
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px) scale(1.02); 
+            background-color: rgba(223, 198, 154, 0.15); 
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); 
+        }
+
+        .gallery-item img {
+            max-width: 100%; 
+            height: auto; 
+            max-height: 350px; 
+            object-fit: cover; 
+            border-radius: 4px; 
+            filter: grayscale(25%) sepia(15%) drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.4)); 
+        }
+
+        .gallery-caption {
+            font-size: 9pt; 
+            color: #ae9d7a; 
+            text-align: center; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            width: 100%; 
+            letter-spacing: 0.3px;
+        }
+
+        /* --- RESPONSIVO PARA PANTALLAS CHICAS --- */
+        @media (max-width: 900px) {
+            .history-content {
+                flex-direction: column; 
+                gap: 24px;
+            }
+            .history-gallery {
+                width: 100%; 
+                flex-direction: row; 
+            }
+        }
+
+        /* --- BARRA DE ESTADO INFERIOR MODERNIZADA --- */
+        .status-bar {
+            height: 32px; 
+            border-top: 1px solid rgba(0,0,0,0.1); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            gap: 6px; 
+            user-select: none; 
+        }
+
+        .status-field {
+            height: 80%; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            border-radius: 15px; 
+            background-color: rgba(0, 0, 0, 0.06); 
+            font-size: 8.5pt; 
+            color: rgba(0, 0, 0, 0.55); 
+        }
+
+        .status-field.flexible {
+            flex: 1; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        
+        <div class="title-bar">
+            <div class="title-text">
+                <span>📁</span> Estilo_Cottagecore.exe 
+            </div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                    <div class="win-btn" style="font-weight: bold;">X</div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Cottagecore.html"><span>O</span>utfits</a></div> 
+            <div class="menu-item"><a href="#" class="active"><span>H</span>istoria</a></div> 
+            <div class="menu-item"><a href="Referentes.html"><span>R</span>eferentes</a></div> 
+            <div class="menu-item"><a href="moodboard.html"><span>M</span>oodboard</a></div> 
+            <div class="menu-item"><a href="perfil.html"><span>P</span>erfil</a></div> 
+        </div>
+
+        <div class="window-body">
+            
+            <div class="history-section">
+                <div class="panel-title">Módulo de Archivo Histórico</div> 
+                <div class="history-container">
+                    
+                    <div class="history-content">
+                        
+                        <!-- Columna de Textos (Izquierda) -->
+                        <div class="text-block">
+                            <h2>Orígenes del Cottagecore</h2> 
+                            <p>
+                                El Cottagecore es un movimiento estético y subcultura de internet que idealiza una vida rural, autosuficiente, pacífica y profundamente conectada con la naturaleza. Aunque la nostalgia por el campo es un impulso humano recurrente, el Cottagecore moderno nació formalmente como un escape de las pantallas dentro de los entornos digitales.
+                            </p>
+
+                            <h3>Cronología de la Subcultura</h3>
+                            
+                            <p><strong>• 2010s — Raíces en Tumblr:</strong> El término comenzó a acuñarse formalmente alrededor de 2018 en plataformas como Tumblr y Pinterest. Funcionaba como un archivo visual de paisajes europeos, pan casero, costura y botánica, alimentado por el deseo de la Generación Z de desconectarse del agotamiento tecnológico.</p>
+                            
+                            <p><strong>• 2020 — La explosión de la pandemia:</strong> Con el confinamiento global por el COVID-19, el Cottagecore pasó de ser un nicho de internet a un fenómeno masivo. El aislamiento y la ansiedad urbana convirtieron las actividades lentas (hacer masa madre, tejer, cuidar plantas) en un bálsamo de salud mental. TikTok se llenó de videos con música folk y vestidos vaporosos.</p>
+                            
+                            <p><strong>• 2020 - 2021 — El impacto cultural de "Folklore":</strong> El lanzamiento del álbum <em>Folklore</em> de Taylor Swift consolidó la estética en el mainstream. Su iconografía de cabañas en el bosque, cárdigans tejidos y fotografía en tonos sepia le dio banda sonora al movimiento.</p>
+
+                            <h3>Los Antecedentes Históricos: El "Neo-Pastoralismo"</h3>
+                            <p>
+                                Desde una perspectiva de diseño e historia del arte, el Cottagecore es la versión contemporánea del movimiento pastoral, inspirándose directamente en tres corrientes:
+                            </p>
+                            <ul>
+                                <li><strong>El movimiento Arts and Crafts (siglo XIX):</strong> Liderado por William Morris, rechazaba la producción industrial masiva en favor de la artesanía detallada, patrones florales y el regreso al trabajo manual.</li>
+                                <li><strong>El Romanticismo:</strong> La idealización de la naturaleza frente a la frialdad y mecanización de la Revolución Industrial.</li>
+                                <li><strong>La Inglaterra Victoriana y Eduardiana:</strong> Estéticamente, adopta las vajillas de té y la vestimenta de las clases de campo de la literatura de autoras como Jane Austen, Beatrix Potter y Louisa May Alcott (<em>Mujercitas</em>).</li>
+                            </ul>
+
+                            <h2>Influencia e Identidad Textil</h2> 
+                            <p>
+                                En el diseño de indumentaria, la moda Cottagecore propone una silueta romántica, cómoda y deliberadamente alejada de las tendencias utilitarias o urbanas de la moda rápida (<em>fast fashion</em>). Se caracteriza por rescatar patrones tradicionales adaptados al vestir diario.
+                            </p>
+                            <p>
+                                Las prendas clave integran elementos como los <strong>Vestidos Pradera (Milkmaid & Prairie dresses)</strong> de faldas fluidas y mangas abullonadas, el uso absoluto de textiles transpirables con textura real (<strong>lino, algodón crudo, lana y pana</strong>), así como detalles artesanales que van desde estampados micro-florales (<em>Liberty print</em>) y encajes, hasta cuellos grandes estilo Peter Pan y cárdigans vintage tejidos de punto grueso.
+                            </p>
+                        </div>
+
+                        <!-- Columna de Imágenes (Derecha) -->
+                        <div class="history-gallery">
+                            <div class="gallery-item"> 
+                                <img src="H1.png" alt="Inspiración Rural e Interior Cottagecore"> 
+                                <div class="gallery-caption">Fig_1. Praderas_y_Entorno.png</div> 
+                            </div> 
+                            <div class="gallery-item"> 
+                                <img src="H2.png" alt="Moda y Silueta Cottagecore"> 
+                                <div class="gallery-caption">Fig_2. Vestimenta_Tradicional.png</div> 
+                            </div> 
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible" id="statusMessage">Módulo de Historia cargado en pantalla completa. Lectura optimizada.</div> 
+            <div class="status-field">Modo: Vista Completa</div> 
+            <div class="status-field">SYS_OK</div> 
+        </div>
+
+    </div>
+
+</body>
+</html>

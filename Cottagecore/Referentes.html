@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo_Cottagecore.exe - Referentes Modernizados</title>
+    <style>
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX --- */
+        :root {
+            --studio-light: #343d2f;  /* Tonos oliva profundo extraídos del index */
+            --studio-shadow: #161a14; 
+            --win-bg: rgba(174, 157, 122, 0.95); /* Mucho más translúcido para fundirse con el fondo */
+            --win-text: #000000; 
+            --win-blue-start: #232a20;  
+            --win-blue-end: #3f493b; 
+            --win-input-bg: rgba(61, 53, 40, 0.6); /* Capa interna oscura traslúcida */
+        }
+
+        * {
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            /* Se modernizan las fuentes globales usando el stack limpio del UI del Index */
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+            font-size: 11pt; 
+        }
+
+        body {
+            /* SE ADOPTA EL DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow); 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA ULTRA-TRANSLÚCIDA --- */
+        .window {
+            background-color: var(--win-bg); 
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); 
+            display: flex; 
+            flex-direction: column; 
+            
+            /* Glassmorphism avanzado para fundirse con el ciclorama 3D posterior */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BARRA DE TÍTULO MODERNIZADA --- */
+        .title-bar {
+            height: 36px; 
+            background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 16px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            user-select: none; 
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15); 
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 6px; 
+        }
+
+        .win-btn {
+            width: 24px; 
+            height: 22px; 
+            background-color: rgba(255, 255, 255, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 9pt; 
+            cursor: pointer; 
+            color: #ffffff; 
+            transition: background-color 0.2s, transform 0.1s; 
+        }
+
+        .win-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+        }
+
+        /* --- BARRA DE MENÚS (ESTILO BOTONES SUTILES DEL INDEX) --- */
+        .menu-bar {
+            display: flex; 
+            gap: 8px; 
+            padding: 8px 16px; 
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+            user-select: none; 
+        }
+
+        .menu-item a {
+            color: var(--win-text);
+            text-decoration: none;
+            display: inline-block;
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            border: 1px solid transparent;
+            font-size: 9.5pt;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease; 
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-item a.active {
+            background-color: rgba(0, 0, 0, 0.12);
+            font-weight: bold;
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- ÁREA INTERNA --- */
+        .window-body {
+            flex: 1; 
+            padding: 20px; 
+            display: flex; 
+            overflow: hidden; 
+        }
+
+        /* --- SECCIÓN ÚNICA DE REFERENTES (ANCHO COMPLETO) --- */
+        .referents-section {
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+
+        .panel-title {
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 9.5pt; 
+            color: rgba(0, 0, 0, 0.6); 
+            letter-spacing: 1.5px; 
+            padding-left: 4px;
+        }
+
+        .referents-container {
+            flex: 1; 
+            background-color: var(--win-input-bg); 
+            border: 1px solid rgba(0,0,0,0.15); 
+            border-radius: 8px; 
+            padding: 24px; 
+            overflow-y: scroll; 
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.4); 
+        }
+
+        /* --- CUADRÍCULA SIMÉTRICA A 2 COLUMNAS GIGANTES --- */
+        .referents-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 24px; 
+            width: 100%;
+        }
+
+        /* Fichas estilizadas como micro-tarjetas de datos flotantes */
+        .profile-card {
+            background-color: rgba(33, 28, 21, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 24px; 
+            display: flex;
+            align-items: center; 
+            gap: 24px;
+            box-shadow: 0px 12px 24px rgba(0,0,0,0.4);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s, border-color 0.25s, box-shadow 0.4s;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-4px);
+            background-color: rgba(33, 28, 21, 0.75);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0px 16px 32px rgba(0,0,0,0.5);
+        }
+
+        /* Contenedor del Avatar Circular con Reflejo */
+        .avatar-wrap {
+            width: 140px; 
+            height: 140px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%; 
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: inset 0px 4px 10px rgba(0,0,0,0.6);
+            /* EFECTO DE REFLEJO INTEGRADO AL ESTILO INDEX */
+            -webkit-box-reflect: below 2px linear-gradient(to bottom, rgba(0,0,0,0) 75%, rgba(0,0,0,0.2) 100%);
+        }
+
+        .avatar-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover .avatar-wrap img {
+            transform: scale(1.05);
+        }
+
+        /* Contenedor de Texto */
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #f7eed8;
+        }
+
+        .profile-info h2 {
+            font-size: 15pt; 
+            color: #dfc69a;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px dashed rgba(255,255,255,0.15);
+            padding-bottom: 6px;
+        }
+
+        /* Meta Tags Técnicos */
+        .meta-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 8pt;
+            background-color: rgba(174, 157, 122, 0.15);
+            color: #dfc69a;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(174, 157, 122, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Biografía */
+        .profile-bio {
+            font-size: 10.5pt; 
+            line-height: 1.5;
+            text-align: justify;
+            color: #e8e0d0;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1000px) {
+            .referents-grid {
+                grid-template-columns: 1fr; 
+                gap: 16px;
+            }
+        }
+
+        /* --- BARRA DE ESTADO INFERIOR MODERNIZADA --- */
+        .status-bar {
+            height: 32px; 
+            border-top: 1px solid rgba(0,0,0,0.1); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            gap: 6px; 
+            user-select: none; 
+        }
+
+        .status-field {
+            height: 80%; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            border-radius: 15px; 
+            background-color: rgba(0, 0, 0, 0.06); 
+            font-size: 8.5pt; 
+            color: rgba(0, 0, 0, 0.55); 
+        }
+
+        .status-field.flexible {
+            flex: 1; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        
+        <div class="title-bar">
+            <div class="title-text">
+                <span>📁</span> Estilo_Cottagecore.exe 
+            </div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                    <div class="win-btn" style="font-weight: bold;">X</div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Cottagecore.html"><span>O</span>utfits</a></div>
+            <div class="menu-item"><a href="Historia.html"><span>H</span>istoria</a></div>
+            <div class="menu-item"><a href="#" class="active"><span>R</span>eferentes</a></div>
+            <div class="menu-item"><a href="Moodboard.html"><span>M</span>oodboard</a></div>
+            <div class="menu-item"><a href="Perfil.html"><span>P</span>erfil</a></div>
+        </div>
+
+        <div class="window-body">
+            
+            <div class="referents-section">
+                <div class="panel-title">Ficheros de Iconos Culturales y de Estilo</div>
+                <div class="referents-container">
+                    <div class="referents-grid">
+                        
+                        <!-- Ficha 1 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R1.png" alt="Mujercitas">
+                            </div>
+                            <div class="profile-info">
+                                <h2>Mujercitas (2019)</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Cine</span>
+                                    <span class="tag">Época</span>
+                                    <span class="tag">Nostálgico</span>
+                                </div>
+                                <p class="profile-bio">
+                                    Obra cinematográfica clave para la estética cottagecore y folk-core. Su diseño de vestuario fusiona la precisión histórica de la era victoriana con un enfoque bohemio, libre y moderno. Destaca por el uso de paletas de color personalizadas para cada personaje (tonos tierra, lavanda y verdes boscosos), superposición de prendas, camisas de cuello alto, chalecos tejidos, faldas amplias de algodón y siluetas cómodas que celebran la vida rural y la naturaleza.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ficha 2 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R2.png" alt="Anne with an E">
+                            </div>
+                            <div class="profile-info">
+                                <h2>ANNE WITH AN E</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Serie</span>
+                                    <span class="tag">Drama</span>
+                                    <span class="tag">Rústico</span>
+                                </div>
+                                <p class="profile-bio">
+                                    La adaptación de la novela clásica es el cottagecore hecho imágenes. La moda edwardiana del siglo XIX, los delantales de trabajo sobre faldas de lino, los lazos en el pelo y la obsesión de la protagonista por las flores y la naturaleza definen el lado más puro y campestre del estilo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ficha 3 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R3.png" alt="Paula Sutton">
+                            </div>
+                            <div class="profile-info">
+                                <h2>PAULA SUTTON</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Campo</span>
+                                    <span class="tag">Estética</span>
+                                    <span class="tag">Fotografía</span>
+                                </div>
+                                <p class="profile-bio">
+                                     Es el referente actual de la moda cottagecore en redes sociales. Su estilo adapta la estética a la vida real con faldas de tablas, vestidos florales de marcas como Hill House Home, cárdigans perfectos y sombreros estructurados, viviendo el sueño campestre desde su casa de campo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ficha 4 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R4.png" alt="Florence Welch">
+                            </div>
+                            <div class="profile-info">
+                                <h2>FLORENCE WELCH</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Música</span>
+                                    <span class="tag">Compositora</span>
+                                    <span class="tag">Místico</span>
+                                </div>
+                                <p class="profile-bio">
+                                    Representa la vertiente más bohemia y espiritual. Su estilo se basa en vestidos vintage fluidos de los años 70, encajes antiguos, mangas victorianas infinitas y coronas de flores, mezclando la vida de campo con un aire de bruja buena del bosque.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible" id="statusMessage">Base de datos de Referentes abierta. Formato: Doble Columna Gigante.</div>
+            <div class="status-field">Registros: 4</div>
+            <div class="status-field">SYS_OK</div> 
+        </div>
+
+    </div>
+
+</body>
+</html>
