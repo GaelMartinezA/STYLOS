@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo_Grunge.exe - Moodboard</title>
+    <style>
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX (GRUNGE) --- */
+        :root {
+            --studio-light: #3a3d42;  /* Tonos gris pizarra deslavado del index[cite: 22] */
+            --studio-shadow: #16171a; /* Negro cenizo industrial[cite: 22] */
+            --win-bg: rgba(43, 45, 49, 0.5); /* Acrílico ahumado translúcido[cite: 22] */
+            --win-text: #ffffff; 
+            --win-blue-start: #141619;  /* Negro alquitrán[cite: 22] */
+            --win-blue-end: #2c3036;   /* Gris acero oscuro[cite: 22] */
+            --win-input-bg: rgba(20, 21, 23, 0.75); /* Capa interna asfalto profundo[cite: 22] */
+            --accent-grunge: #6e262e; /* Rojo vino gastado para el estado activo */
+            --card-grunge-light: #2d3035; /* Color gris de tarjeta polaroid envejecida */
+            --card-grunge-dark: #1f2125;  /* Cartón gris o kraft deslavado */
+        }
+
+        * {
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            /* Se modernizan las fuentes globales usando el stack limpio del UI del Index[cite: 22] */
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+            font-size: 11pt; 
+        }
+
+        body {
+            /* SE ADOPTA EL DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX[cite: 22] */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow); 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA ULTRA-TRANSLÚCIDA --- */
+        .window {
+            background-color: var(--win-bg); 
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); 
+            display: flex; 
+            flex-direction: column; 
+            
+            /* Glassmorphism avanzado para fundirse con el ciclorama 3D posterior[cite: 22] */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BARRA DE TÍTULO MODERNIZADA --- */
+        .title-bar {
+            height: 36px; 
+            background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 16px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            user-select: none; 
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15); 
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 6px; 
+        }
+
+        .win-btn {
+            width: 24px; 
+            height: 22px; 
+            background-color: rgba(255, 255, 255, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 9pt; 
+            cursor: pointer; 
+            color: #ffffff; 
+            transition: background-color 0.2s, transform 0.1s; 
+        }
+
+        .win-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+        }
+
+        /* --- BARRA DE MENÚS (ESTILO BOTONES SUTILES DEL INDEX) --- */
+        .menu-bar {
+            display: flex; 
+            gap: 8px; 
+            padding: 8px 16px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            user-select: none; 
+        }
+
+        .menu-item a {
+            color: var(--win-text);
+            text-decoration: none;
+            display: inline-block;
+            padding: 4px 12px; 
+            border-radius: 20px; /* Redondeado suavizado que hace match con el Index[cite: 22] */
+            border: 1px solid transparent;
+            font-size: 9.5pt;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease; 
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255, 255, 255, 0.1); 
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item a.active {
+            background-color: var(--accent-grunge);
+            font-weight: bold;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-item span {
+            text-decoration: none; 
+        }
+
+        /* --- ÁREA INTERNA --- */
+        .window-body {
+            flex: 1; 
+            padding: 20px; 
+            display: flex; 
+            overflow: hidden; 
+        }
+
+        /* --- SECCIÓN ÚNICA DEL MOODBOARD --- */
+        .moodboard-section {
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+
+        .panel-title {
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 9.5pt; 
+            color: rgba(255, 255, 255, 0.7); 
+            letter-spacing: 1.5px; 
+            padding-left: 4px;
+        }
+
+        .moodboard-container {
+            flex: 1; 
+            background-color: var(--win-input-bg); 
+            border: 1px solid rgba(255,255,255,0.08); 
+            border-radius: 8px; 
+            padding: 24px; 
+            overflow-y: scroll; 
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.5); 
+        }
+
+        /* --- EFECTO MASONRY (MURO DE RECOORTES DENSO) --- */
+        .masonry-wall {
+            column-count: 4; 
+            column-gap: 24px;
+            width: 100%;
+        }
+
+        @media (max-width: 1200px) { .masonry-wall { column-count: 3; } }
+        @media (max-width: 800px) { .masonry-wall { column-count: 2; } }
+
+        /* --- ITEMS INDIVIDUALES DEL COLLAGE (GRUNGE EDIT) --- */
+        .mood-item {
+            break-inside: avoid; 
+            margin-bottom: 28px;
+            background-color: var(--card-grunge-light);
+            padding: 10px;
+            box-shadow: 0px 12px 25px rgba(0,0,0,0.55); /* Sombra más sucia y profunda[cite: 22] */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+        }
+
+        .mood-item:hover {
+            transform: scale(1.04) rotate(0deg) translateY(-4px) !important;
+            box-shadow: 0px 18px 35px rgba(0,0,0,0.7);
+            z-index: 10;
+        }
+
+        /* Tipo 1: Polaroid Envejecida Gris */
+        .mood-item.polaroid {
+            padding-bottom: 24px;
+            background-color: var(--card-grunge-light);
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        /* Tipo 2: Papel de cartón quemado o asfalto gris oscuro */
+        .mood-item.kraft {
+            background-color: var(--card-grunge-dark);
+            border: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        /* Tipo 3: Recorte puro desgastado */
+        .mood-item.raw-cut {
+            background: none;
+            padding: 0;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.6);
+            border: none;
+        }
+
+        /* --- ELEMENTOS DE DISEÑO DESTRUÍDOS / INDUSTRIALES --- */
+        /* Cinta de aislar oscura / Duct-tape industrial */
+        .mood-item.taped::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-4deg);
+            width: 75px;
+            height: 22px;
+            background-color: rgba(15, 16, 18, 0.8); /* Duct-tape mate oscuro */
+            border-left: 1px dashed rgba(255,255,255,0.15);
+            border-right: 1px dashed rgba(255,255,255,0.15);
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        /* Alfiler metálico oxidado o grapa */
+        .mood-item.pinned::before {
+            content: '📎'; /* Grapa metálica en lugar de pin de plástico[cite: 22] */
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            font-size: 11pt;
+            filter: grayscale(100%) drop-shadow(1px 2px 2px rgba(0,0,0,0.6));
+            z-index: 3;
+        }
+
+        .mood-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            filter: grayscale(90%) contrast(110%); /* Estética desaturada y contrastada de fotocopia */
+            transition: filter 0.3s;
+        }
+
+        .mood-item:hover .mood-img {
+            filter: grayscale(30%) contrast(100%);
+        }
+
+        .mood-label {
+            font-size: 8.5pt;
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+            color: #a0a0a0; /* Letras claras sobre marco oscuro */
+            margin-top: 8px;
+            text-align: center;
+            border-top: 1px dotted rgba(255,255,255,0.1);
+            padding-top: 6px;
+        }
+
+        /* ROTACIONES ALEATORIAS[cite: 22] */
+        .rot-left-soft  { transform: rotate(-1.5deg); }
+        .rot-right-soft { transform: rotate(1.2deg); }
+        .rot-left-hard  { transform: rotate(-3.5deg); }
+        .rot-right-hard { transform: rotate(2.8deg); }
+        .rot-none       { transform: rotate(0deg); }
+
+        /* --- BARRA DE ESTADO INFERIOR MODERNIZADA --- */
+        .status-bar {
+            height: 32px; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            gap: 6px; 
+            user-select: none; 
+        }
+
+        .status-field {
+            height: 80%; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            border-radius: 15px; 
+            background-color: rgba(255, 255, 255, 0.03); 
+            font-size: 8.5pt; 
+            color: rgba(255, 255, 255, 0.4); 
+        }
+
+        .status-field.flexible {
+            flex: 1; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        
+        <div class="title-bar">
+            <div class="title-text">
+                <span>📁</span> Estilo_Grunge.exe 
+            </div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                    <div class="win-btn" style="font-weight: bold;">X</div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Grunge.html"><span>O</span>utfits</a></div>
+            <div class="menu-item"><a href="Historia.html"><span>H</span>istoria</a></div>
+            <div class="menu-item"><a href="Referentes.html"><span>R</span>eferentes</a></div>
+            <div class="menu-item"><a href="#" class="active"><span>M</span>oodboard</a></div>
+            <div class="menu-item"><a href="Perfil.html"><span>P</span>erfil</a></div>
+        </div>
+
+        <div class="window-body">
+            
+            <div class="moodboard-section">
+                <div class="panel-title">Mesa de Inspiración</div>
+                <div class="moodboard-container">
+                    
+                    <div class="masonry-wall">
+                        
+                        <!-- Item 1: Polaroid Taped -->
+                        <div class="mood-item polaroid taped rot-left-soft">
+                            <img src="MB1.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Prints.jpg</div>
+                        </div>
+
+                        <!-- Item 2: Recorte Kraft Pinned -->
+                        <div class="mood-item kraft pinned rot-right-soft">
+                            <img src="MB2.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Gruge_Spot.png</div>
+                        </div>
+
+                        <!-- Item 3: Raw Cut -->
+                        <div class="mood-item raw-cut rot-left-hard">
+                            <img src="MB3.png" alt="Foto" class="mood-img">
+                        </div>
+
+                        <!-- Item 4: Polaroid Pinned -->
+                        <div class="mood-item polaroid pinned rot-right-hard">
+                            <img src="MB4.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Fotografia_urbana.jpg</div>
+                        </div>
+
+                        <!-- Item 5: Taped Kraft -->
+                        <div class="mood-item kraft taped rot-none">
+                            <img src="MB5.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Accesorios.bmp</div>
+                        </div>
+
+                        <!-- Item 6: Polaroid Normal -->
+                        <div class="mood-item polaroid rot-left-soft">
+                            <img src="MB6.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Peinado.raw</div>
+                        </div>
+
+                        <!-- Item 7: Raw Cut -->
+                        <div class="mood-item raw-cut rot-right-soft">
+                            <img src="MB7.png" alt="Foto" class="mood-img">
+                        </div>
+
+                        <!-- Item 8: Polaroid Taped -->
+                        <div class="mood-item polaroid taped rot-left-hard">
+                            <img src="MB8.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Cinturones.png</div>
+                        </div>
+
+                        <!-- Item 9: Kraft Pinned -->
+                        <div class="mood-item kraft pinned rot-right-hard">
+                            <img src="MB9.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Textura_Grunge.jpg</div>
+                        </div>
+
+                        <!-- Item 10: Polaroid Rotada -->
+                        <div class="mood-item polaroid rot-none">
+                            <img src="MB10.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Convers.bmp</div>
+                        </div>
+
+                        <!-- Item 11: Raw Cut -->
+                        <div class="mood-item raw-cut rot-left-soft">
+                            <img src="MB11.png" alt="Foto" class="mood-img">
+                        </div>
+
+                        <!-- Item 12 -->
+                        <div class="mood-item polaroid taped rot-right-soft">
+                            <img src="MB12.png" alt="Foto" class="mood-img">
+                            <div class="mood-label">Paleta_GRungE.jpg</div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible" id="statusMessage">Mapeo de Moodboard completo. Total de recortes renderizados: 12.[cite: 22]</div>
+            <div class="status-field">Modo: Collage Grunge</div>
+            <div class="status-field">SYS_OK[cite: 22]</div> 
+        </div>
+
+    </div>
+
+</body>
+</html>

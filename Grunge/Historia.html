@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style_Manager_v1.0.exe - Historia Grunge</title>
+    <style>
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX (GRUNGE) --- */
+        :root {
+            --studio-light: #3a3d42;  /* Tonos gris pizarra deslavado extraídos del index */
+            --studio-shadow: #16171a; /* Negro cenizo industrial */
+            --win-bg: rgba(43, 45, 49, 0.5); /* Acrílico ahumado translúcido */
+            --win-text: #ffffff; 
+            --win-blue-start: #141619;  /* Negro alquitrán */
+            --win-blue-end: #2c3036;   /* Gris acero oscuro */
+            --win-input-bg: rgba(20, 21, 23, 0.75); /* Capa interna asfalto profundo */
+            --accent-grunge: #6e262e; /* Rojo vino gastado para detalles */
+            --accent-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+            font-size: 11pt; 
+        }
+
+        body {
+            /* DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX GRUNGE */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow); 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA ULTRA-TRANSLÚCIDA --- */
+        .window {
+            background-color: var(--win-bg); 
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); 
+            display: flex; 
+            flex-direction: column; 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BARRA DE TÍTULO --- */
+        .title-bar {
+            height: 36px; 
+            background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%); 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 16px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            user-select: none; 
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15); 
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 6px; 
+        }
+
+        .win-btn {
+            width: 24px; 
+            height: 22px; 
+            background-color: rgba(255, 255, 255, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 9pt; 
+            cursor: pointer; 
+            color: #ffffff; 
+            transition: background-color 0.2s, transform 0.1s; 
+        }
+
+        .win-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25); 
+        }
+
+        /* --- BARRA DE MENÚS (BOTONES SUTILES DEL INDEX) --- */
+        .menu-bar {
+            display: flex; 
+            gap: 8px; 
+            padding: 8px 16px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            user-select: none; 
+        }
+
+        .menu-item a {
+            color: var(--win-text);
+            text-decoration: none;
+            display: inline-block;
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            border: 1px solid transparent;
+            font-size: 9.5pt;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease; 
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255, 255, 255, 0.1); 
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item a.active {
+            background-color: var(--accent-grunge);
+            font-weight: bold;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- ÁREA INTERNA --- */
+        .window-body {
+            flex: 1; 
+            padding: 20px; 
+            display: flex; 
+            overflow: hidden; 
+        }
+
+        .history-section {
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+
+        .panel-title {
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 9.5pt; 
+            color: rgb(255, 255, 255); 
+            letter-spacing: 1.5px; 
+            padding-left: 4px;
+            opacity: 0.7;
+        }
+
+        /* --- CONTENEDOR DE LECTURA BRUTALISTA / MONOESPACIADO --- */
+        .history-container {
+            flex: 1; 
+            background-color: var(--win-input-bg); 
+            border: 1px solid rgba(255,255,255,0.08); 
+            border-radius: 8px; 
+            padding: 24px; 
+            overflow-y: scroll; 
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.5); 
+            color: #dcdcdc; 
+            font-family: "Courier New", Courier, monospace; 
+        }
+
+        .history-container * {
+            font-family: "Courier New", Courier, monospace; 
+        }
+
+        /* --- CONTENEDOR CON ENFOQUE DE REJILLA CON BORDES DE CONCRETO --- */
+        .history-content {
+            width: 100%; 
+            max-width: 100%; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: row; 
+            gap: 40px; 
+            line-height: 1.6; 
+            border: 2px dashed rgba(255, 255, 255, 0.15); 
+            padding: 24px;
+            border-radius: 6px;
+        }
+
+        .text-block {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .history-content h2 {
+            font-size: 18pt; 
+            border-bottom: 2px solid var(--accent-grunge); 
+            padding-bottom: 8px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: #ffffff; 
+            margin-top: 10px;
+        }
+
+        .history-content h3 {
+            font-size: 14pt; 
+            color: #b0b0b0;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .history-content p {
+            font-size: 12pt; 
+            text-align: justify; 
+        }
+
+        .history-content ul {
+            padding-left: 24px;
+            font-size: 12pt; 
+        }
+
+        .history-content li {
+            margin-bottom: 8px;
+            font-size: 12pt;
+        }
+
+        /* --- GALERÍA DE ASSETS --- */
+        .history-gallery {
+            width: 350px; 
+            display: flex;
+            flex-direction: column; 
+            gap: 24px;
+            flex-shrink: 0; 
+        }
+
+        .gallery-item {
+            background-color: rgba(0, 0, 0, 0.4); 
+            border: 1px solid var(--accent-border); 
+            border-radius: 8px; 
+            padding: 12px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 8px; 
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s ease, box-shadow 0.4s ease; 
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px) scale(1.02); 
+            background-color: rgba(110, 38, 46, 0.15); 
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6); 
+            border-color: var(--accent-grunge);
+        }
+
+        .gallery-item img {
+            max-width: 100%; 
+            height: auto; 
+            max-height: 350px; 
+            object-fit: cover; 
+            border-radius: 4px; 
+            filter: grayscale(80%) contrast(120%) drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.6)); 
+        }
+
+        .gallery-caption {
+            font-size: 9pt; 
+            color: #888888; 
+            text-align: center; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            width: 100%; 
+            letter-spacing: 0.3px;
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 900px) {
+            .history-content {
+                flex-direction: column; 
+                gap: 24px;
+            }
+            .history-gallery {
+                width: 100%; 
+                flex-direction: row; 
+            }
+        }
+
+        /* --- BARRA DE ESTADO INFERIOR --- */
+        .status-bar {
+            height: 32px; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            gap: 6px; 
+            user-select: none; 
+        }
+
+        .status-field {
+            height: 80%; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            border-radius: 15px; 
+            background-color: rgba(255, 255, 255, 0.03); 
+            font-size: 8.5pt; 
+            color: rgba(255, 255, 255, 0.4); 
+        }
+
+        .status-field.flexible {
+            flex: 1; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        
+        <div class="title-bar">
+            <div class="title-text">
+                <span>📁</span> Estilo_Grunge.exe 
+            </div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                    <div class="win-btn" style="font-weight: bold;">X</div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Grunge.html"><span>O</span>utfits</a></div> 
+            <div class="menu-item"><a href="#" class="active"><span>H</span>istoria</a></div> 
+            <div class="menu-item"><a href="Referentes.html"><span>R</span>eferentes</a></div> 
+            <div class="menu-item"><a href="moodboard.html"><span>M</span>oodboard</a></div> 
+            <div class="menu-item"><a href="Perfil.html"><span>P</span>erfil</a></div> 
+        </div>
+
+        <div class="window-body">
+            
+            <div class="history-section">
+                <div class="panel-title">Módulo de Archivo Histórico</div> 
+                <div class="history-container">
+                    
+                    <div class="history-content">
+                        
+                        <!-- Columna de Textos (Izquierda) -->
+                        <div class="text-block">
+                            <h2>Orígenes del Grunge</h2> 
+                            <p>
+                                El Grunge nació a mediados de los años 80 en el noroeste de los Estados Unidos, teniendo a Seattle como su epicentro absoluto. Emergión no como un producto estético planificado por la industria de la moda, sino como una respuesta cruda, nihilista y contracultural al pop plástico y el glam metal corporativo que dominaban la radio. Estrechamente ligado a la música rock alternativa, el sonido combinaba la distorsión pesada del punk y el sludge metal con letras cargadas de angustia existencial, alienación e inconformismo.
+                            </p>
+
+                            <h3>Cronología y Expansión Cultural</h3>
+                            
+                            <p><strong>• Mid 1980s — El sonido underground:</strong> El sello independiente Sub Pop comenzó a documentar bandas locales de Washington como Green River, Mudhoney y Soundgarden. Desarrollaron un sonido sucio, crudo y directo. El uniforme de los músicos era simplemente la ropa funcional que usaban los trabajadores e ingenieros de las fábricas del clima frío y lluvioso de Seattle.</p>
+                            
+                            <p><strong>• 1991 — El estallido global:</strong> Con el lanzamiento del álbum <em>Nevermind</em> de Nirvana y el éxito masivo del sencillo "Smells Like Teen Spirit", el movimiento destrozó las barreras del circuito comercial. Bandas como Pearl Jam, Alice in Chains y Stone Temple Pilots redefinieron la cultura juvenil global de la Generación X de la noche a mañana.</p>
+                            
+                            <p><strong>• 1992 - 1993 — La apropiación de la alta costura:</strong> La industria de la moda asimiló el "anti-estilo" de las calles. Marc Jacobs presentó su famosa e icónica colección "Grunge" para la casa de modas Perry Ellis en 1992, subiendo camisas de franela a cuadros, botas de combate y vestidos desaliñados a las pasarelas de alta costura, consolidando el impacto visual del movimiento.</p>
+
+                            <h3>Los Antecedentes y Filosofía Estética</h3>
+                            <p>
+                                A diferencia de otras subculturas de diseñador, la estética del Grunge se basa firmemente en el rechazo al consumo masivo, adoptando tres principios fundamentales:
+                            </p>
+                            <ul>
+                                <li><strong>La deconstrucción del uniforme obrero:</strong> El uso masivo de sobrecamisas de franela (plaid shirts), botas de trabajo pesadas (Dr. Martens) y jeans rotos provino directamente del estilo de vida de la clase trabajadora del noroeste americano.</li>
+                                <li><strong>El rechazo a la vanidad:</strong> El cabello desaliñado, las prendas intencionalmente desgastadas, descoloridas o sobredimensionadas (oversized) proyectaban apatía hacia los estándares comerciales de belleza.</li>
+                                <li><strong>Cultura de Segunda Mano (Thrifting):</strong> La ropa se compraba en tiendas de caridad o saldos por necesidad económica y postura anti-capitalista, mezclando capas de ropa sin un orden lógico.</li>
+                            </ul>
+
+                            <h2>Identidad Textil e Indumentaria</h2> 
+                            <p>
+                                En el diseño de indumentaria, el guardarropa grunge se define por la funcionalidad cómoda y el desaliño calculado. Las texturas son pesadas, ásperas y reales: telas térmicas de gofre, lana pesada gastada, mezclilla tosca rota y franela cepillada. 
+                            </p>
+                            <p>
+                                Las piezas clave se componen por la **superposición de capas (layering)**, combinando camisetas gráficas de bandas underground debajo de camisas de cuadros abiertas, jeans desgastados de corte recto o siluetas amplias, vestidos tipo slip de satén combinados de forma contrastante con botas de combate militares rudas, y suéteres de punto oversized rasgados que cuelgan del cuerpo de manera holgada.
+                            </p>
+                        </div>
+
+                        <!-- Columna de Imágenes (Derecha) -->
+                        <div class="history-gallery">
+                            <div class="gallery-item"> 
+                                <img src="H1.png" alt="Cultura de Seattle y Escena Grunge"> 
+                                <div class="gallery-caption">Fig_1. Poster_Underground.png</div> 
+                            </div> 
+                            <div class="gallery-item"> 
+                                <img src="H2.png" alt="Estilo y Silueta Grunge 90s"> 
+                                <div class="gallery-caption">Fig_2. Gato_Grunge.png</div> 
+                            </div> 
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible" id="statusMessage">Módulo de Historia Grunge inicializado correctamente. Visualización optimizada de archivos de los 90.</div> 
+            <div class="status-field">Modo: Archivo Seattle</div> 
+            <div class="status-field">SYS_ERR_NONE</div> 
+        </div>
+
+    </div>
+
+</body>
+</html>

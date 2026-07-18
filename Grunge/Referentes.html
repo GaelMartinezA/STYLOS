@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo_Grunge.exe - Referentes Modernizados</title>
+    <style>
+        /* --- PALETA DE COLOR INTEGRADA AL CICLORAMA DEL INDEX (GRUNGE) --- */
+        :root {
+            --studio-light: #3a3d42;  /* Tonos gris pizarra deslavado del index[cite: 21] */
+            --studio-shadow: #16171a; /* Negro cenizo industrial[cite: 21] */
+            --win-bg: rgba(43, 45, 49, 0.5); /* Acrílico ahumado translúcido[cite: 21] */
+            --win-text: #ffffff; /*[cite: 21] */
+            --win-blue-start: #141619;  /* Negro alquitrán[cite: 21] */
+            --win-blue-end: #2c3036;   /* Gris acero oscuro[cite: 21] */
+            --win-input-bg: rgba(20, 21, 23, 0.75); /* Capa interna asfalto profundo[cite: 21] */
+            --accent-grunge: #6e262e;  /* Rojo vino gastado para el estado activo */
+            --accent-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            /* Se modernizan las fuentes globales usando el stack limpio del UI del Index[cite: 21] */
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; 
+            font-size: 11pt; 
+        }
+
+        body {
+            /* SE ADOPTA EL DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX[cite: 21] */
+            background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
+            background-color: var(--studio-shadow); 
+            min-height: 100vh; 
+            width: 100vw;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA ULTRA-TRANSLÚCIDA --- */
+        .window {
+            background-color: var(--win-bg); /*[cite: 21] */
+            width: 100vw; 
+            height: 100vh; 
+            color: var(--win-text); /*[cite: 21] */
+            display: flex; 
+            flex-direction: column; 
+            
+            /* Glassmorphism avanzado para fundirse con el ciclorama 3D posterior[cite: 21] */
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            box-shadow: inset 0px 0px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- BARRA DE TÍTULO MODERNIZADA --- */
+        .title-bar {
+            height: 36px; 
+            background: linear-gradient(180deg, var(--win-blue-end) 0%, var(--win-blue-start) 100%); /*[cite: 21] */
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 0 16px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+            user-select: none; 
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15); /*[cite: 21] */
+        }
+
+        .title-text {
+            display: flex; 
+            align-items: center; 
+            gap: 8px; /*[cite: 21] */
+            font-size: 10pt; 
+        }
+
+        .title-controls {
+            display: flex; 
+            gap: 6px; /*[cite: 21] */
+        }
+
+        .win-btn {
+            width: 24px; /*[cite: 21] */
+            height: 22px; /*[cite: 21] */
+            background-color: rgba(255, 255, 255, 0.12); /*[cite: 21] */
+            border: 1px solid rgba(255, 255, 255, 0.2); /*[cite: 21] */
+            border-radius: 4px; /*[cite: 21] */
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 9pt; /*[cite: 21] */
+            cursor: pointer; 
+            color: #ffffff; /*[cite: 21] */
+            transition: background-color 0.2s, transform 0.1s; /*[cite: 21] */
+        }
+
+        .win-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25); /*[cite: 21] */
+        }
+
+        /* --- BARRA DE MENÚS (BOTONES SUTILES DEL INDEX) --- */
+        .menu-bar {
+            display: flex; 
+            gap: 8px; /*[cite: 21] */
+            padding: 8px 16px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            user-select: none; 
+        }
+
+        .menu-item a {
+            color: var(--win-text); /*[cite: 21] */
+            text-decoration: none;
+            display: inline-block;
+            padding: 4px 12px; /*[cite: 21] */
+            border-radius: 20px; /*[cite: 21] */
+            border: 1px solid transparent;
+            font-size: 9.5pt; /*[cite: 21] */
+            letter-spacing: 0.5px; /*[cite: 21] */
+            transition: all 0.3s ease; /*[cite: 21] */
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255, 255, 255, 0.1); 
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item a.active {
+            background-color: var(--accent-grunge);
+            font-weight: bold;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- ÁREA INTERNA --- */
+        .window-body {
+            flex: 1; 
+            padding: 20px; /*[cite: 21] */
+            display: flex; 
+            overflow: hidden; 
+        }
+
+        /* --- SECCIÓN ÚNICA DE REFERENTES (ANCHO COMPLETO) --- */
+        .referents-section {
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; /*[cite: 21] */
+        }
+
+        .panel-title {
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 9.5pt; /*[cite: 21] */
+            color: rgba(255, 255, 255, 0.7); 
+            letter-spacing: 1.5px; /*[cite: 21] */
+            padding-left: 4px; /*[cite: 21] */
+        }
+
+        .referents-container {
+            flex: 1; 
+            background-color: var(--win-input-bg); /*[cite: 21] */
+            border: 1px solid rgba(255,255,255,0.08); 
+            border-radius: 8px; /*[cite: 21] */
+            padding: 24px; /*[cite: 21] */
+            overflow-y: scroll; 
+            box-shadow: inset 0px 4px 20px rgba(0, 0, 0, 0.4); /*[cite: 21] */
+        }
+
+        /* --- CUADRÍCULA SIMÉTRICA A 2 COLUMNAS GIGANTES --- */
+        .referents-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /*[cite: 21] */
+            gap: 24px; /*[cite: 21] */
+            width: 100%;
+        }
+
+        /* Fichas estilizadas como micro-tarjetas de datos flotantes */
+        .profile-card {
+            background-color: rgba(20, 21, 23, 0.6);
+            border: 1px solid var(--accent-border);
+            border-radius: 12px; /*[cite: 21] */
+            padding: 24px; /*[cite: 21] */
+            display: flex;
+            align-items: center; 
+            gap: 24px; /*[cite: 21] */
+            box-shadow: 0px 12px 24px rgba(0,0,0,0.4); /*[cite: 21] */
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s, border-color 0.25s, box-shadow 0.4s; /*[cite: 21] */
+        }
+
+        .profile-card:hover {
+            transform: translateY(-4px); /*[cite: 21] */
+            background-color: rgba(20, 21, 23, 0.8);
+            border-color: var(--accent-grunge);
+            box-shadow: 0px 16px 32px rgba(0,0,0,0.5); /*[cite: 21] */
+        }
+
+        /* Contenedor del Avatar Circular con Reflejo */
+        .avatar-wrap {
+            width: 140px; /*[cite: 21] */
+            height: 140px; /*[cite: 21] */
+            background-color: rgba(0, 0, 0, 0.3); /*[cite: 21] */
+            border: 1px solid rgba(255, 255, 255, 0.1); /*[cite: 21] */
+            border-radius: 50%; /*[cite: 21] */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: inset 0px 4px 10px rgba(0,0,0,0.6); /*[cite: 21] */
+            /* EFECTO DE REFLEJO INTEGRADO AL ESTILO INDEX */
+            -webkit-box-reflect: below 2px linear-gradient(to bottom, rgba(0,0,0,0) 75%, rgba(0,0,0,0.2) 100%); /*[cite: 21] */
+        }
+
+        .avatar-wrap img {
+            max-width: 100%; /*[cite: 21] */
+            max-height: 100%; /*[cite: 21] */
+            object-fit: contain;
+            filter: grayscale(100%) contrast(120%) drop-shadow(0px 6px 10px rgba(0,0,0,0.5)); /* Ajustado a estética Grunge monocromática */
+            transition: transform 0.3s ease; /*[cite: 21] */
+        }
+
+        .profile-card:hover .avatar-wrap img {
+            transform: scale(1.05); /*[cite: 21] */
+            filter: grayscale(40%) contrast(110%) drop-shadow(0px 6px 10px rgba(0,0,0,0.5));
+        }
+
+        /* Contenedor de Texto */
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /*[cite: 21] */
+            color: #f7eed8; /*[cite: 21] */
+        }
+
+        .profile-info h2 {
+            font-size: 15pt; /*[cite: 21] */
+            color: #ffffff;
+            font-weight: 600; /*[cite: 21] */
+            text-transform: uppercase;
+            letter-spacing: 0.5px; /*[cite: 21] */
+            border-bottom: 1px dashed rgba(255,255,255,0.15); /*[cite: 21] */
+            padding-bottom: 6px; /*[cite: 21] */
+        }
+
+        /* Meta Tags Técnicos */
+        .meta-tags {
+            display: flex;
+            gap: 6px; /*[cite: 21] */
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 8pt; /*[cite: 21] */
+            background-color: rgba(110, 38, 46, 0.2);
+            color: #ffb4b4;
+            padding: 2px 8px; /*[cite: 21] */
+            border-radius: 12px; /*[cite: 21] */
+            border: 1px solid rgba(110, 38, 46, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px; /*[cite: 21] */
+        }
+
+        /* Biografía */
+        .profile-bio {
+            font-size: 10.5pt; /*[cite: 21] */
+            line-height: 1.5; /*[cite: 21] */
+            text-align: justify; /*[cite: 21] */
+            color: #cccccc;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1000px) {
+            .referents-grid {
+                grid-template-columns: 1fr; /*[cite: 21] */
+                gap: 16px; /*[cite: 21] */
+            }
+        }
+
+        /* --- BARRA DE ESTADO INFERIOR MODERNIZADA --- */
+        .status-bar {
+            height: 32px; /*[cite: 21] */
+            border-top: 1px solid rgba(255,255,255,0.05); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; /*[cite: 21] */
+            gap: 6px; /*[cite: 21] */
+            user-select: none; 
+        }
+
+        .status-field {
+            height: 80%; /*[cite: 21] */
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; /*[cite: 21] */
+            border-radius: 15px; /*[cite: 21] */
+            background-color: rgba(255, 255, 255, 0.03); 
+            font-size: 8.5pt; /*[cite: 21] */
+            color: rgba(255, 255, 255, 0.4); 
+        }
+
+        .status-field.flexible {
+            flex: 1; /*[cite: 21] */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        
+        <div class="title-bar">
+            <div class="title-text">
+                <span>📁</span> Estilo_Grunge.exe 
+            </div>
+            <div class="title-controls">
+                <div class="win-btn">_</div> 
+                <div class="win-btn">🗖</div> 
+                <a href="../Index/index.html" style="text-decoration: none; color: inherit;">
+                    <div class="win-btn" style="font-weight: bold;">X</div> 
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-bar">
+            <div class="menu-item"><a href="Grunge.html"><span>O</span>utfits</a></div>
+            <div class="menu-item"><a href="Historia.html"><span>H</span>istoria</a></div>
+            <div class="menu-item"><a href="#" class="active"><span>R</span>eferentes</a></div>
+            <div class="menu-item"><a href="Moodboard.html"><span>M</span>oodboard</a></div>
+            <div class="menu-item"><a href="Perfil.html"><span>P</span>erfil</a></div>
+        </div>
+
+        <div class="window-body">
+            
+            <div class="referents-section">
+                <div class="panel-title">Ficheros de Iconos Culturales y de Estilo</div>
+                <div class="referents-container">
+                    <div class="referents-grid">
+                        
+                        <!-- Ficha 1 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R1.png" alt="Kurt Cobain">
+                            </div>
+                            <div class="profile-info">
+                                <h2>KURT COBAIN</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Música</span>
+                                    <span class="tag">Ícono</span>
+                                    <span class="tag">Anti-Fashion</span>
+                                </div>
+                                <p class="profile-bio">
+                                    Líder y compositor de Nirvana, Kurt definió de forma involuntaria el uniforme del movimiento. Su desinterés por la moda comercial lo llevó a popularizar la superposición de camisetas rotas, los suéteres oversized deshilachados de rayas rojas y negras, las clásicas gafas de sol ovaladas ovalistas "Kurt Cobe" y las zapatillas de lona gastadas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ficha 2 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R2.png" alt="Singles 1992">
+                            </div>
+                            <div class="profile-info">
+                                <h2>SINGLES (1992)</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Cine</span>
+                                    <span class="tag">Seattle</span>
+                                    <span class="tag">Retrato Época</span>
+                                </div>
+                                <p class="profile-bio">
+                                    Película de Cameron Crowe que funciona como la cápsula del tiempo perfecta del auge del grunge de principios de los 90. Con cameos de bandas locales icónicas y una ambientación realista, el largometraje codificó la vestimenta urbana, las capas de franela cepillada, las chaquetas de cuero áspero y la actitud apática de la juventud de Seattle para el mundo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ficha 3 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R3.png" alt="Marc Jacobs 1992">
+                            </div>
+                            <div class="profile-info">
+                                <h2>BILLIE EILISH</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Música</span>
+                                    <span class="tag">Gen Z</span>
+                                    <span class="tag">Alternativo</span>
+                                </div>
+                                <p class="profile-bio">
+                                La máxima exponente del grunge moderno, quien adaptó la apatía y el descontento de los 90 al contexto de la Generación Z en plataformas como Instagram. Su estilo desafía la hipersexualización de la industria musical mediante el uso de siluetas masivas y andróginas. Popularizó las bermudas de mezclilla gigantescas, sudaderas oversized con gráficos de anime o bandas de metal, cadenas pesadas de plata, cabello teñido de colores neón con raíces oscuras y zapatillas deportivas de bota ancha.                            </div>
+                        </div>
+
+                        <!-- Ficha 4 -->
+                        <div class="profile-card">
+                            <div class="avatar-wrap">
+                                <img src="R4.png" alt="Courtney Love">
+                            </div>
+                            <div class="profile-info">
+                                <h2>COURTNEY LOVE</h2>
+                                <div class="meta-tags">
+                                    <span class="tag">Música</span>
+                                    <span class="tag">Kinderwhore</span>
+                                    <span class="tag">Deconstrucción</span>
+                                </div>
+                                <p class="profile-bio">
+                                    Líder de la banda Hole, Courtney originó la vertiente estética "Kinderwhore". Su estilo consistía en deconstruir la feminidad tradicional mediante vestidos slip de seda rasgados de estilo vintage victoriano, abrigos de piel sintética desaliñados, medias de malla rotas y maquillaje corrido pesado, creando una presencia imponente e inconformista.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status-bar">
+            <div class="status-field flexible" id="statusMessage">Base de datos de Referentes abierta.</div>
+            <div class="status-field">Registros: 4</div>
+            <div class="status-field">SYS_OK</div> 
+        </div>
+
+    </div>
+
+</body>
+</html>
