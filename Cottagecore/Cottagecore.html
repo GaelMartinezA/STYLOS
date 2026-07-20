@@ -29,13 +29,16 @@
             /* SE ADOPTA EL DEGRADADO RADIAL ATMOSFÉRICO DEL INDEX */
             background-image: radial-gradient(circle at 50% 85%, var(--studio-light) 0%, var(--studio-shadow) 100%);
             background-color: var(--studio-shadow); 
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="font-size:14px"><text y="16">↖️</text></svg>'), auto;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" width="40" height="40" font-size="32px"><text y="32">👽</text></svg>') 16 0, auto;
             min-height: 100vh; 
             width: 100vw;
             overflow: hidden; 
             display: flex;
             flex-direction: column;
         }
+
+        a, button, .clickable {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" width="40" height="40" font-size="32px"><text y="32">👉</text></svg>') 0 0, pointer;
 
         /* --- CONTENEDOR PRINCIPAL: PANTALLA COMPLETA ULTRA-TRANSLÚCIDA --- */
         .window {
